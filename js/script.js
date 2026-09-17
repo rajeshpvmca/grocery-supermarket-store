@@ -1,30 +1,52 @@
 document.addEventListener("DOMContentLoaded", () => {
     
-    // --- Preloader Logic ---
+    // --- 1. Immediate Preparation to Prevent Content Flash ---
     const preloader = document.getElementById('theme-preloader');
     let animationsTriggered = false;
 
+    // Apply data-aos attributes immediately on DOM load
+    const fadeUpElements = document.querySelectorAll('.product-card, .feature-box, .category-item, .blog-card, .testimonial-card, .contact-info-card, .branch-card, .mission-card, .team-card');
+    fadeUpElements.forEach((el, index) => {
+        el.setAttribute('data-aos', 'fade-up');
+        el.setAttribute('data-aos-delay', (index % 4) * 100);
+    });
+
+    const fadeRightElements = document.querySelectorAll('.section-title, .about-story img');
+    fadeRightElements.forEach(el => el.setAttribute('data-aos', 'fade-right'));
+
+    // Inject strict hiding style while preloader is active
+    if (preloader) {
+        document.documentElement.classList.add('preloader-active');
+        const hideStyle = document.createElement('style');
+        hideStyle.id = 'preloader-hide-style';
+        hideStyle.innerHTML = `
+            html.preloader-active body { overflow: hidden; }
+            html.preloader-active [data-aos] { opacity: 0 !important; visibility: hidden !important; }
+            html.preloader-active header { opacity: 0 !important; visibility: hidden !important; }
+            html.preloader-active .hero-title, html.preloader-active .hero-subtitle, html.preloader-active .hero-btn { opacity: 0 !important; visibility: hidden !important; }
+            html.preloader-active .page-banner h1, html.preloader-active .page-banner p, html.preloader-active .page-banner .breadcrumb { opacity: 0 !important; visibility: hidden !important; }
+        `;
+        document.head.appendChild(hideStyle);
+    }
+
+    // --- 2. The Animation Starter Function ---
     window.startThemeAnimations = function() {
         if(animationsTriggered) return;
         animationsTriggered = true;
 
-        // 1. GSAP Header Reveal (if header exists by now)
+        // Remove strict hiding so AOS and GSAP can naturally fade them in
+        if (preloader) {
+            document.documentElement.classList.remove('preloader-active');
+        }
+
+        // A. GSAP Header Reveal
         if (typeof gsap !== 'undefined' && document.querySelector('header')) {
+            gsap.set("header", { opacity: 1, visibility: 'visible' }); // ensure visible
             gsap.from("header .top-bar", { y: -50, opacity: 0, duration: 0.8, ease: "power3.out" });
             gsap.from("header .navbar", { y: -50, opacity: 0, duration: 0.8, delay: 0.2, ease: "power3.out" });
         }
 
-        // 2. Dynamic AOS Attributes
-        const fadeUpElements = document.querySelectorAll('.product-card, .feature-box, .category-item, .blog-card, .testimonial-card, .contact-info-card, .branch-card, .mission-card, .team-card');
-        fadeUpElements.forEach((el, index) => {
-            el.setAttribute('data-aos', 'fade-up');
-            el.setAttribute('data-aos-delay', (index % 4) * 100);
-        });
-
-        const fadeRightElements = document.querySelectorAll('.section-title, .about-story img');
-        fadeRightElements.forEach(el => el.setAttribute('data-aos', 'fade-right'));
-        
-        // Initialize AOS
+        // B. Initialize AOS
         if (typeof AOS !== 'undefined') {
             AOS.init({
                 duration: 800,
@@ -33,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        // 3. GSAP Animation for Hero Slider
+        // C. GSAP Animation for Hero Slider
         if (typeof gsap !== 'undefined' && document.querySelector('.heroSwiper')) {
             const animateSlide = (activeSlide) => {
                 const title = activeSlide.querySelector('.hero-title');
@@ -41,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const btn = activeSlide.querySelector('.hero-btn');
 
                 if(title && subtitle && btn) {
-                    gsap.set([title, subtitle, btn], { opacity: 0, y: 50 });
+                    gsap.set([title, subtitle, btn], { opacity: 0, y: 50, visibility: 'visible' });
                     gsap.to(title, { opacity: 1, y: 0, duration: 0.8, delay: 0.2, ease: "power3.out" });
                     gsap.to(subtitle, { opacity: 1, y: 0, duration: 0.8, delay: 0.4, ease: "power3.out" });
                     gsap.to(btn, { opacity: 1, y: 0, duration: 0.8, delay: 0.6, ease: "back.out(1.7)" });
@@ -57,39 +79,41 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-        // 4. GSAP Animation for Page Banners
+        // D. GSAP Animation for Page Banners
         if (typeof gsap !== 'undefined') {
             const bannerTitle = document.querySelector('.page-banner h1');
             const bannerDesc = document.querySelector('.page-banner p');
             const breadcrumb = document.querySelector('.page-banner .breadcrumb');
             
             if (bannerTitle && bannerDesc && breadcrumb) {
+                gsap.set([bannerTitle, bannerDesc, breadcrumb], { visibility: 'visible' });
                 gsap.from(bannerTitle, { y: 50, opacity: 0, duration: 1, ease: "power3.out", delay: 0.2 });
                 gsap.from(bannerDesc, { y: 30, opacity: 0, duration: 1, ease: "power3.out", delay: 0.4 });
                 gsap.from(breadcrumb, { scale: 0.8, opacity: 0, duration: 0.8, ease: "back.out(1.7)", delay: 0.6 });
             }
         }
 
-        // 5. Apply ThreeJS to either Home page hero slider or inner pages banner
+        // E. Apply ThreeJS Backgrounds
         const heroSlider = document.querySelector('.hero-slider');
         const pageBanner = document.querySelector('.page-banner');
         if (heroSlider) initThreeJS(heroSlider);
         if (pageBanner) initThreeJS(pageBanner);
     };
 
+    // --- 3. Preloader Trigger ---
     if (preloader) {
         window.addEventListener('load', function() {
             setTimeout(function() {
                 preloader.classList.add('hidden');
                 setTimeout(() => {
                     preloader.style.display = 'none';
-                    // Trigger animations AFTER preloader is completely gone
+                    // Trigger animations perfectly synced AFTER preloader is completely gone
                     window.startThemeAnimations();
-                }, 500); // Wait for transition
-            }, 2000); // 2 second delay
+                }, 500); // Wait for CSS transition
+            }, 2000); // 2 second display
         });
     } else {
-        // Fallback if no preloader is found on the page
+        // Fallback
         window.startThemeAnimations();
     }
 
@@ -100,7 +124,6 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(data => {
             document.getElementById("header-container").innerHTML = data;
 
-            // Re-initialize any header scripts
             const mobileMenuBtn = document.querySelector(".navbar-toggler");
             const navbarCollapse = document.querySelector(".navbar-collapse");
             const closeMenuBtn = document.querySelector(".close-menu");
@@ -117,7 +140,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
             
-            // Set active class based on current page
             const path = window.location.pathname;
             const page = path.split("/").pop();
             const navLinks = document.querySelectorAll('.nav-link');
@@ -127,8 +149,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
             
-            // If animations were already triggered (no preloader), run header animation now
+            // If animations were already triggered (no preloader fallback), run header animation now
             if(animationsTriggered && typeof gsap !== 'undefined') {
+                gsap.set("header", { opacity: 1, visibility: 'visible' });
                 gsap.from("header .top-bar", { y: -50, opacity: 0, duration: 0.8, ease: "power3.out" });
                 gsap.from("header .navbar", { y: -50, opacity: 0, duration: 0.8, delay: 0.2, ease: "power3.out" });
             }
@@ -140,7 +163,6 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(data => {
             document.getElementById("footer-container").innerHTML = data;
             
-            // Scroll to Top Button Logic
             const scrollTopBtn = document.getElementById("scrollTopBtn");
 
             if (scrollTopBtn) {
@@ -161,7 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- Counter / Deal of the Day Logic ---
     if (document.getElementById('days')) {
         const targetDate = new Date();
-        targetDate.setDate(targetDate.getDate() + 3); // 3 days from now
+        targetDate.setDate(targetDate.getDate() + 3);
         
         const updateCountdown = () => {
             const now = new Date().getTime();

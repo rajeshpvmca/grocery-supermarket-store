@@ -23,7 +23,7 @@
         <div class="preloader-text">Grocery <span>&amp;</span> Supermarket</div>
         <div class="loader-bar"></div>
     </div>
-    
+
     <!-- Section 1: Header -->
     <div id="header-container"></div>
 
@@ -95,10 +95,11 @@
                 <div class="col-lg-6">
                     <div class="contact-form-wrapper">
                         <h3 class="fw-bold mb-4">Send Us a Message</h3>
-                        <form>
+                        <form action="404.html">
                             <div class="row g-3">
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" placeholder="Your Name" required>
+                                    <input type="text" class="form-control" placeholder="Your Name" required pattern="[A-Za-z\s]+"
+                     oninput="this.value = this.value.replace(/[^A-Za-z\s]/g, '')">
                                 </div>
                                 <div class="col-md-6">
                                     <input type="email" class="form-control" placeholder="Your Email" required>
