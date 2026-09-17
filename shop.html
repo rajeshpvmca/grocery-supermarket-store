@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Grocery & Supermarket Store</title>
+    <link rel="icon" type="image/webp" href="assets/images/logoStackly.webp">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/shop.css">
+</head>
+<body>
+
+    <!-- Section 1: Header -->
+    <div id="header-container"></div>
+
+    <!-- Section 2: Banner -->
+    <section class="page-banner" style="background-image: url('assets/images/img_15.webp');">
+        <div class="container text-center">
+            <h1 class="display-4 fw-bold">Shop Now</h1>
+            <p class="lead mb-4">Browse our wide selection of fresh, organic, and locally sourced products.</p>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Shop</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Sections 3-5: Shop Layout (Sidebar, Categories, Products) -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                
+                <!-- Section 3: Sidebar -->
+                <div class="col-lg-3">
+                    <div class="sidebar-widget">
+                        <h4 class="sidebar-title">Categories</h4>
+                        <ul class="category-list">
+                            <li><a href="#">Fresh Fruits <span>(25)</span></a></li>
+                            <li><a href="#">Vegetables <span>(40)</span></a></li>
+                            <li><a href="#">Fresh Meat <span>(15)</span></a></li>
+                            <li><a href="#">Bakery <span>(12)</span></a></li>
+                            <li><a href="#">Dairy & Eggs <span>(20)</span></a></li>
+                            <li><a href="#">Beverages <span>(30)</span></a></li>
+                            <li><a href="#">Frozen Foods <span>(18)</span></a></li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-widget">
+                        <h4 class="sidebar-title">Filter by Price</h4>
+                        <input type="range" class="form-range price-range-slider" min="0" max="100" id="priceRange">
+                        <div class="d-flex justify-content-between mt-2">
+                            <span>$0</span>
+                            <span class="fw-bold text-success" id="priceValue">$100</span>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-widget">
+                        <h4 class="sidebar-title">Top Rated</h4>
+                        <div class="d-flex mb-3">
+                            <img src="assets/images/img_47.webp" alt="Tomatoes" style="width: 60px; height: 60px; object-fit: cover;" class="rounded">
+                            <div class="ms-3">
+                                <h6 class="mb-0 fw-bold">Tomatoes</h6>
+                                <div class="text-success">$3.50</div>
+                                <div class="text-warning" style="font-size: 10px;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <img src="assets/images/img_46.webp" alt="Oranges" style="width: 60px; height: 60px; object-fit: cover;" class="rounded">
+                            <div class="ms-3">
+                                <h6 class="mb-0 fw-bold">Oranges</h6>
+                                <div class="text-success">$5.00</div>
+                                <div class="text-warning" style="font-size: 10px;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 4: Main Product Listing -->
+                <div class="col-lg-9">
+                    <div class="shop-top-bar">
+                        <div>Showing 1–9 of 30 results</div>
+                        <div>
+                            <select class="form-select form-select-sm" style="width: 200px;">
+                                <option>Default Sorting</option>
+                                <option>Sort by Popularity</option>
+                                <option>Sort by Rating</option>
+                                <option>Sort by Price: Low to High</option>
+                                <option>Sort by Price: High to Low</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row g-4">
+                        <!-- Product Item -->
+                        <div class="col-md-4 col-sm-6">
+                            <div class="product-card">
+                                <span class="product-badge bg-danger text-white">Sale</span>
+                                <img src="assets/images/img_35.webp" class="product-img" alt="Milk">
+                                <div class="product-actions">
+                                    <button title="Add to Cart" onclick="window.location.href='404.html'"><i class="fa-solid fa-cart-plus"></i></button>
+                                    <button title="Wishlist" onclick="window.location.href='404.html'"><i class="fa-regular fa-heart"></i></button>
+                                </div>
+                                <div class="product-body">
+                                    <h6 class="fw-bold">Fresh Whole Milk</h6>
+                                    <div class="product-price">$2.00</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="product-card">
+                                <img src="assets/images/img_24.webp" class="product-img" alt="Carrots">
+                                <div class="product-actions">
+                                    <button title="Add to Cart" onclick="window.location.href='404.html'"><i class="fa-solid fa-cart-plus"></i></button>
+                                    <button title="Wishlist" onclick="window.location.href='404.html'"><i class="fa-regular fa-heart"></i></button>
+                                </div>
+                                <div class="product-body">
+                                    <h6 class="fw-bold">Organic Carrots</h6>
+                                    <div class="product-price">$1.50</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="product-card">
+                                <img src="assets/images/img_33.webp" class="product-img" alt="Potatoes">
+                                <div class="product-actions">
+                                    <button title="Add to Cart" onclick="window.location.href='404.html'"><i class="fa-solid fa-cart-plus"></i></button>
+                                    <button title="Wishlist" onclick="window.location.href='404.html'"><i class="fa-regular fa-heart"></i></button>
+                                </div>
+                                <div class="product-body">
+                                    <h6 class="fw-bold">Sweet Potatoes</h6>
+                                    <div class="product-price">$2.50</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="product-card">
+                                <span class="product-badge bg-info text-white">New</span>
+                                <img src="assets/images/img_36.webp" class="product-img" alt="Pineapple">
+                                <div class="product-actions">
+                                    <button title="Add to Cart" onclick="window.location.href='404.html'"><i class="fa-solid fa-cart-plus"></i></button>
+                                    <button title="Wishlist" onclick="window.location.href='404.html'"><i class="fa-regular fa-heart"></i></button>
+                                </div>
+                                <div class="product-body">
+                                    <h6 class="fw-bold">Fresh Pineapple</h6>
+                                    <div class="product-price">$4.00</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="product-card">
+                                <img src="assets/images/img_27.webp" class="product-img" alt="Grapes">
+                                <div class="product-actions">
+                                    <button title="Add to Cart" onclick="window.location.href='404.html'"><i class="fa-solid fa-cart-plus"></i></button>
+                                    <button title="Wishlist" onclick="window.location.href='404.html'"><i class="fa-regular fa-heart"></i></button>
+                                </div>
+                                <div class="product-body">
+                                    <h6 class="fw-bold">Grapes</h6>
+                                    <div class="product-price">$5.50</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="product-card">
+                                <img src="assets/images/img_23.webp" class="product-img" alt="Bread">
+                                <div class="product-actions">
+                                    <button title="Add to Cart" onclick="window.location.href='404.html'"><i class="fa-solid fa-cart-plus"></i></button>
+                                    <button title="Wishlist" onclick="window.location.href='404.html'"><i class="fa-regular fa-heart"></i></button>
+                                </div>
+                                <div class="product-body">
+                                    <h6 class="fw-bold">Whole Wheat Bread</h6>
+                                    <div class="product-price">$3.20</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <nav class="mt-5">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled"><a class="page-link" href="#"><i class="fa-solid fa-angle-left"></i></a></li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angle-right"></i></a></li>
+                        </ul>
+                    </nav>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Discount Banner -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="discount-banner">
+                <div class="discount-banner-content text-center">
+                    <h2 class="display-5 fw-bold mb-3">Weekend Mega Sale!</h2>
+                    <p class="lead mb-4">Get an extra 20% off on all Organic Vegetables using code <strong class="text-warning">VEG20</strong>.</p>
+                    <a href="#shop" class="btn btn-theme-secondary btn-lg fw-bold rounded-pill px-5">Shop Sale</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Trending Items -->
+    <section class="py-5 bg-light">
+        <div class="container my-4">
+            <div class="section-title text-center mb-5" data-aos="fade-up">
+                <h2>Trending Items</h2>
+                <p class="text-muted">The most loved fresh fruits this week.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="0">
+                    <div class="product-card">
+                        <span class="product-badge bg-warning text-dark">Hot</span>
+                        <img src="assets/images/img_49.webp" class="product-img" alt="Pineapple">
+                        <div class="product-actions">
+                            <button title="Add to Cart" onclick="window.location.href='404.html'"><i class="fa-solid fa-cart-plus"></i></button>
+                            <button title="Wishlist" onclick="window.location.href='404.html'"><i class="fa-regular fa-heart"></i></button>
+                        </div>
+                        <div class="product-body">
+                            <h6 class="fw-bold">Tropical Pineapple</h6>
+                            <div class="product-price">$4.50</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="product-card">
+                        <img src="assets/images/img_50.webp" class="product-img" alt="Strawberry">
+                        <div class="product-actions">
+                            <button title="Add to Cart" onclick="window.location.href='404.html'"><i class="fa-solid fa-cart-plus"></i></button>
+                            <button title="Wishlist" onclick="window.location.href='404.html'"><i class="fa-regular fa-heart"></i></button>
+                        </div>
+                        <div class="product-body">
+                            <h6 class="fw-bold">Fresh Strawberries</h6>
+                            <div class="product-price">$6.00</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="product-card">
+                        <span class="product-badge bg-success text-white">Organic</span>
+                        <img src="assets/images/img_48.webp" class="product-img" alt="Mango">
+                        <div class="product-actions">
+                            <button title="Add to Cart" onclick="window.location.href='404.html'"><i class="fa-solid fa-cart-plus"></i></button>
+                            <button title="Wishlist" onclick="window.location.href='404.html'"><i class="fa-regular fa-heart"></i></button>
+                        </div>
+                        <div class="product-body">
+                            <h6 class="fw-bold">Alphonso Mango</h6>
+                            <div class="product-price">$8.50</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="product-card">
+                        <img src="assets/images/img_40.webp" class="product-img" alt="Apples">
+                        <div class="product-actions">
+                            <button title="Add to Cart" onclick="window.location.href='404.html'"><i class="fa-solid fa-cart-plus"></i></button>
+                            <button title="Wishlist" onclick="window.location.href='404.html'"><i class="fa-regular fa-heart"></i></button>
+                        </div>
+                        <div class="product-body">
+                            <h6 class="fw-bold">Red Apples 1kg</h6>
+                            <div class="product-price">$5.20</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 8: Customer Reviews -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="section-title">
+                <h2>Product Reviews</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <div class="bg-light p-4 rounded">
+                        <div class="review-item">
+                            <div class="d-flex justify-content-between mb-2">
+                                <h6 class="fw-bold mb-0">John Doe</h6>
+                                <div class="text-warning" style="font-size: 12px;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                            </div>
+                            <p class="text-muted mb-0">The fruits were perfectly ripe and very sweet. Best quality I've found online so far.</p>
+                        </div>
+                        <div class="review-item">
+                            <div class="d-flex justify-content-between mb-2">
+                                <h6 class="fw-bold mb-0">Jane Smith</h6>
+                                <div class="text-warning" style="font-size: 12px;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></div>
+                            </div>
+                            <p class="text-muted mb-0">Delivery was right on time and vegetables were fresh. Highly recommend.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 9: Brands -->
+    <section class="py-5 bg-light">
+        <div class="container text-center">
+            <div class="section-title text-center mb-5" data-aos="fade-up">
+                <h2>Our Featured Brands</h2>
+                <p class="text-muted">We collaborate with the world's most trusted brands.</p>
+            </div>
+            <div class="row align-items-center justify-content-center g-4">
+                <div class="col-6 col-sm-4 col-md-3" data-aos="fade-up" data-aos-delay="0">
+                    <div class="partner-box">
+                        <i class="fa-solid fa-mug-hot"></i>
+                        <span>Morning Brew</span>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-4 col-md-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="partner-box">
+                        <i class="fa-solid fa-bottle-water"></i>
+                        <span>Aqua Pure</span>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-4 col-md-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="partner-box">
+                        <i class="fa-solid fa-bowl-food"></i>
+                        <span>NutriBowl</span>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-4 col-md-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="partner-box">
+                        <i class="fa-solid fa-jar"></i>
+                        <span>Nature's Jam</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 10: Newsletter -->
+    <section class="newsletter-section position-relative overflow-hidden" style="background: linear-gradient(135deg, var(--primary-color) 0%, #115722 100%);">
+        
+        <div class="container py-5 position-relative z-1">
+            <div class="row align-items-center justify-content-between g-4">
+                <div class="col-lg-6 mb-3 mb-lg-0" data-aos="fade-right">
+                    <h2 class="display-6 fw-bold mb-3 text-white"><i class="fa-regular fa-paper-plane me-3"></i>Subscribe for Daily Tips</h2>
+                    <p class="lead mb-0 text-white opacity-75">Join our newsletter and never miss an update on our latest arrivals, special offers, and store news.</p>
+                </div>
+                <div class="col-lg-5" data-aos="fade-left">
+                    <form class="newsletter-form">
+                        <div class="bg-white p-2 rounded-pill d-flex align-items-center shadow-lg" style="border: 2px solid rgba(255,255,255,0.2);">
+                            <input type="email" class="form-control border-0 shadow-none ps-4 bg-transparent fw-medium" placeholder="Enter your email address" required style="font-size: 1.05rem;">
+                            <button type="submit" class="btn btn-theme-primary m-0 flex-shrink-0 shadow-none">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 11: Footer -->
+    <div id="footer-container"></div>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- GSAP JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- Three JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        // Update price value dynamically for range slider
+        const priceRange = document.getElementById('priceRange');
+        const priceValue = document.getElementById('priceValue');
+        if(priceRange) {
+            priceRange.addEventListener('input', (e) => {
+                priceValue.innerText = '$' + e.target.value;
+            });
+        }
+    </script>
+</body>
+</html>
+
+
+

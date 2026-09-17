@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Grocery & Supermarket Store</title>
+    <link rel="icon" type="image/webp" href="assets/images/logoStackly.webp">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/contact.css">
+</head>
+<body>
+
+    <!-- Section 1: Header -->
+    <div id="header-container"></div>
+
+    <!-- Section 2: Banner -->
+    <section class="page-banner" style="background-image: url('assets/images/img_15.webp');">
+        <div class="container text-center">
+            <h1 class="display-4 fw-bold">Contact Us</h1>
+            <p class="lead mb-4">Have questions? We're here to help. Reach out to our support team.</p>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Section 3: Contact Info -->
+    <section class="py-5 bg-light">
+        <div class="container my-4">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="contact-info-card h-100">
+                        <div class="contact-icon">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <h5 class="fw-bold">Our Location</h5>
+                        <p class="mb-0">
+                            <a href="https://www.google.com/maps/search/?api=1&query=MMR+Complex,+Chinna+Thirupathi,+Salem,+Tamil+Nadu,+636008" target="_blank" class="text-muted text-decoration-none d-block">
+                                MMR Complex, Chinna Thirupathi (near Chinna Muniyappan Kovil), Salem, Tamil Nadu, 636008
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="contact-info-card h-100">
+                        <div class="contact-icon">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <h5 class="fw-bold">Call Us</h5>
+                        <p class="mb-0">
+                            <a href="tel:+919876543210" class="text-muted text-decoration-none d-block">+91 9876543210</a>
+                            <span class="text-muted">24/7 Customer Support</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="contact-info-card h-100">
+                        <div class="contact-icon">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <h5 class="fw-bold">Email Us</h5>
+                        <p class="mb-0">
+                            <a href="mailto:info@grocerysupermarket.com" class="text-muted text-decoration-none d-block">info@grocerysupermarket.com</a>
+                            <a href="mailto:support@grocerysupermarket.com" class="text-muted text-decoration-none d-block">support@grocerysupermarket.com</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4 & 5: Form and Map -->
+    <section class="py-5 bg-white">
+        <div class="container my-4">
+            <div class="row g-5">
+                
+                <!-- Section 4: Contact Form -->
+                <div class="col-lg-6">
+                    <div class="contact-form-wrapper">
+                        <h3 class="fw-bold mb-4">Send Us a Message</h3>
+                        <form>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" placeholder="Your Name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control" placeholder="Your Email" required>
+                                </div>
+                                <div class="col-12">
+                                    <input type="text" class="form-control" placeholder="Subject" required>
+                                </div>
+                                <div class="col-12">
+                                    <textarea class="form-control" rows="5" placeholder="Write your message here..." required></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-theme-primary btn-lg w-100 fw-bold rounded-pill">Send Message</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Section 5: Google Map -->
+                <div class="col-lg-6">
+                    <div class="map-container h-100">
+                        <iframe src="https://maps.google.com/maps?q=MMR+Complex,+Chinna+Thirupathi,+Salem,+Tamil+Nadu,+636008&t=&z=15&ie=UTF8&iwloc=&output=embed"  width="100%" height="100%" style="border:0; min-height: 400px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Store Hours -->
+    <section class="py-5 bg-light">
+        <div class="container text-center">
+            <h3 class="fw-bold mb-4">Opening Hours</h3>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <ul class="list-group list-group-flush shadow-sm rounded">
+                        <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                            <span class="fw-bold">Monday - Friday</span>
+                            <span class="text-success fw-bold">8:00 AM - 10:00 PM</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                            <span class="fw-bold">Saturday</span>
+                            <span class="text-success fw-bold">9:00 AM - 11:00 PM</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                            <span class="fw-bold">Sunday</span>
+                            <span class="text-danger fw-bold">Closed</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: FAQ -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+            </div>
+            <div class="row justify-content-center mt-4">
+                <div class="col-md-8">
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item mb-3 border rounded">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                    How long does delivery take?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-muted">
+                                    We offer same-day delivery for all orders placed before 2:00 PM. Orders placed after 2:00 PM will be delivered the next morning.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item mb-3 border rounded">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    Do you accept returns?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-muted">
+                                    Yes, we have a 14-day return policy for most packaged items. Fresh produce must be returned within 24 hours of delivery.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item mb-3 border rounded">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                    Are your products really organic?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-muted">
+                                    Absolutely! All our organic labeled products are certified by the National Organic Program and sourced directly from certified organic farms.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 8: Branch Locations -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="section-title text-center mb-5" data-aos="fade-up">
+                <h2>Our Branches</h2>
+                <p class="text-muted">Visit any of our convenient locations across South India.</p>
+            </div>
+            <div class="row g-4 mt-2">
+                
+                <!-- Salem Branch -->
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="0">
+                    <div class="branch-card h-100 d-flex flex-column">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="branch-icon me-3 mb-0">
+                                <i class="fa-solid fa-building"></i>
+                            </div>
+                            <h5 class="fw-bold mb-0">Salem</h5>
+                        </div>
+                        <p class="mb-0 text-muted flex-grow-1"><i class="fa-solid fa-location-dot text-success me-2"></i> MMR Complex, Chinna Thirupathi (near Chinna Muniyappan Kovil), Salem, Tamil Nadu, 636008</p>
+                    </div>
+                </div>
+
+                <!-- Chennai Branch -->
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="branch-card h-100 d-flex flex-column">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="branch-icon me-3 mb-0">
+                                <i class="fa-solid fa-store"></i>
+                            </div>
+                            <h5 class="fw-bold mb-0">Chennai</h5>
+                        </div>
+                        <p class="mb-0 text-muted flex-grow-1"><i class="fa-solid fa-location-dot text-success me-2"></i> No. 9, Ambika Complex, 1st Floor, Gokulam Colony, Karanaipudhuchery Main Road, Urapakkam, Chennai, Tamil Nadu, 603202</p>
+                    </div>
+                </div>
+
+                <!-- Bangalore Branch -->
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="branch-card h-100 d-flex flex-column">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="branch-icon me-3 mb-0">
+                                <i class="fa-solid fa-store"></i>
+                            </div>
+                            <h5 class="fw-bold mb-0">Bangalore</h5>
+                        </div>
+                        <p class="mb-0 text-muted flex-grow-1"><i class="fa-solid fa-location-dot text-success me-2"></i> Building: Evolve Studio, 4th Floor, Khata No 10 Street: Begur - Koppa Road (in front of SNN Raj Serenity, Suraksha Nagar, Yelenahalli, Begur)</p>
+                    </div>
+                </div>
+
+                <!-- Hyderabad Branch -->
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="branch-card h-100 d-flex flex-column">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="branch-icon me-3 mb-0">
+                                <i class="fa-solid fa-store"></i>
+                            </div>
+                            <h5 class="fw-bold mb-0">Hyderabad</h5>
+                        </div>
+                        <p class="mb-0 text-muted flex-grow-1"><i class="fa-solid fa-location-dot text-success me-2"></i> 4th floor of Jayasudha Heights, Plot No. 459, 100 Feet Road, Ayyappa Society, beside the YSR Statue, Madhapur, Hyderabad, Telangana - 500081</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 9: Support Team -->
+    <section class="py-5 bg-white">
+        <div class="container text-center">
+            <h3 class="fw-bold mb-4">Need More Help?</h3>
+            <p class="text-muted mb-4">Our dedicated support team is available 24/7 to help you with any issues.</p>
+            <a href="tel:+919876543210" class="btn btn-theme-secondary btn-lg rounded-pill px-4 me-2"><i class="fa-solid fa-phone me-2"></i> Call Support</a>
+            <a href="mailto:info@grocerysupermarket.com" class="btn btn-theme-primary btn-lg rounded-pill px-4"><i class="fa-solid fa-envelope me-2"></i> Email Support</a>
+        </div>
+    </section>
+
+    <!-- Section 10: Footer -->
+    <div id="footer-container"></div>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- GSAP JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- Three JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
+
+

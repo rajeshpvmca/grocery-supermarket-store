@@ -1,0 +1,95 @@
+/* Shop Page Specific Styles */
+.sidebar-widget {
+    background: var(--white);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    border: 1px solid var(--border-color);
+}
+.sidebar-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-color);
+    display: inline-block;
+}
+.category-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.category-list li {
+    margin-bottom: 10px;
+}
+.category-list a {
+    color: var(--text-muted);
+    display: flex;
+    justify-content: space-between;
+}
+.category-list a:hover {
+    color: var(--primary-color);
+    padding-left: 5px;
+}
+
+.price-range-slider {
+    width: 100%;
+}
+
+.shop-top-bar {
+    background: var(--white);
+    padding: 15px 20px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.pagination .page-link {
+    color: var(--text-dark);
+    border: none;
+    margin: 0 5px;
+    border-radius: 5px;
+}
+.pagination .page-item.active .page-link {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.discount-banner {
+    background: url('../assets/images/img_15.webp') center/cover;
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    padding: 60px 40px;
+    color: var(--white);
+}
+.discount-banner::before {
+    content: '';
+    position: absolute;
+    top:0; left:0; width:100%; height:100%;
+    background: rgba(0,0,0,0.6);
+}
+.discount-banner-content {
+    position: relative;
+    z-index: 2;
+}
+
+.review-item {
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+.review-item:last-child {
+    border-bottom: none;
+}
+
+/* Partners Section */
+.partner-box { background: var(--white); border-radius: 15px; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 120px; transition: all 0.4s ease; cursor: pointer; border: 1px solid var(--border-color); }
+.partner-box i { font-size: 36px; color: var(--text-muted); margin-bottom: 10px; transition: all 0.4s ease; }
+.partner-box span { font-weight: 800; color: var(--text-muted); font-size: 1.1rem; letter-spacing: 0.5px; transition: all 0.4s ease; }
+.partner-box:hover { background: var(--white); box-shadow: 0 15px 30px rgba(40,167,69,0.15); transform: translateY(-8px); border-color: var(--primary-color); }
+.partner-box:hover i, .partner-box:hover span { color: var(--primary-color); }

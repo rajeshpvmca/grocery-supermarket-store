@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grocery & Supermarket Store - Fresh Food Delivered</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/webp" href="assets/images/logoStackly.webp">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- Section 1: Header Container -->
+    <div id="header-container"></div>
+
+    <!-- Section 2: Hero Slider -->
+    <section class="hero-slider">
+        <!-- Swiper -->
+        <div class="swiper heroSwiper">
+            <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide" style="background-image: url('assets/images/img_15.webp');">
+                    <div class="hero-content">
+                        <div class="container">
+                            <h1 class="display-3 fw-bold text-white mb-4 hero-title">Fresh Groceries<br>Direct to Your Door</h1>
+                            <p class="lead text-white mb-5 hero-subtitle">Discover the freshest produce, dairy, and household essentials. Order today and get same-day delivery!</p>
+                            <a href="shop.html" class="btn btn-theme-primary btn-lg rounded-pill px-5 py-3 fw-bold hero-btn">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="swiper-slide" style="background-image: url('assets/images/img_08.webp');">
+                    <div class="hero-content">
+                        <div class="container">
+                            <h1 class="display-3 fw-bold text-white mb-4 hero-title">100% Organic<br>Fresh Vegetables</h1>
+                            <p class="lead text-white mb-5 hero-subtitle">Support local farmers and enjoy healthy, chemical-free food every day.</p>
+                            <a href="shop.html" class="btn btn-theme-primary btn-lg rounded-pill px-5 py-3 fw-bold hero-btn">View Offers</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+            <!-- Add Navigation -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </section>
+
+    <!-- Section 3: Features -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-box">
+                        <i class="fa-solid fa-truck-fast feature-icon"></i>
+                        <h5 class="fw-bold">Free Shipping</h5>
+                        <p class="text-muted mb-0">On all orders over $50</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-box">
+                        <i class="fa-solid fa-rotate-left feature-icon"></i>
+                        <h5 class="fw-bold">Easy Returns</h5>
+                        <p class="text-muted mb-0">14 days return policy</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-box">
+                        <i class="fa-solid fa-shield-halved feature-icon"></i>
+                        <h5 class="fw-bold">Secure Payment</h5>
+                        <p class="text-muted mb-0">100% secure checkout</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-box">
+                        <i class="fa-solid fa-headset feature-icon"></i>
+                        <h5 class="fw-bold">24/7 Support</h5>
+                        <p class="text-muted mb-0">Dedicated support team</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Popular Categories -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Popular Categories</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-4 col-6">
+                    <a href="shop.html" class="d-block category-item text-dark">
+                        <img src="assets/images/img_40.webp" alt="Fresh Fruits">
+                        <div class="category-name">Fresh Fruits</div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-6">
+                    <a href="shop.html" class="d-block category-item text-dark">
+                        <img src="assets/images/img_41.webp" alt="Vegetables">
+                        <div class="category-name">Vegetables</div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-6">
+                    <a href="shop.html" class="d-block category-item text-dark" data-aos="fade-up" data-aos-delay="200">
+                        <img src="assets/images/img_25.webp" alt="Fresh Meat">
+                        <div class="category-name">Fresh Meat</div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-6">
+                    <a href="shop.html" class="d-block category-item text-dark">
+                        <img src="assets/images/img_23.webp" alt="Bakery">
+                        <div class="category-name">Bakery</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Deal of the Day -->
+    <section class="py-5 deal-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="deal-content-wrapper text-center" data-aos="zoom-in" data-aos-duration="1000">
+                        <h2 class="display-5 fw-bold mb-3 text-white">Deal of the Day</h2>
+                        <p class="lead mb-4 text-white">Get up to 50% off on organic vegetables! Offer valid for a limited time.</p>
+                        <div class="countdown mb-5">
+                            <div><span id="days" class="countdown-value">00</span><span class="countdown-label">Days</span></div>
+                            <div><span id="hours" class="countdown-value">00</span><span class="countdown-label">Hours</span></div>
+                            <div><span id="minutes" class="countdown-value">00</span><span class="countdown-label">Mins</span></div>
+                            <div><span id="seconds" class="countdown-value">00</span><span class="countdown-label">Secs</span></div>
+                        </div>
+                        <a href="shop.html" class="btn btn-theme-secondary btn-lg rounded-pill px-5 py-3 fw-bold shadow-lg">Shop the Deal</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Best Sellers -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="section-title">
+                <h2>Best Sellers</h2>
+            </div>
+            <div class="row g-4">
+                <!-- Product 1 -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card">
+                        <span class="product-badge">-15%</span>
+                        <img src="assets/images/img_44.webp" class="product-img" alt="Red Tomatoes">
+                        <div class="product-actions">
+                            <button title="Add to Cart"><i class="fa-solid fa-cart-plus"></i></button>
+                            <button title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                            <button title="View Details"><i class="fa-regular fa-eye"></i></button>
+                        </div>
+                        <div class="product-body">
+                            <div class="text-warning mb-2">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                            </div>
+                            <h6 class="fw-bold">Fresh Red Tomatoes</h6>
+                            <div class="product-price">$3.50 <small class="text-muted text-decoration-line-through">$4.10</small></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 2 -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card">
+                        <img src="assets/images/img_31.webp" class="product-img" alt="Oranges">
+                        <div class="product-actions">
+                            <button title="Add to Cart"><i class="fa-solid fa-cart-plus"></i></button>
+                            <button title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                            <button title="View Details"><i class="fa-regular fa-eye"></i></button>
+                        </div>
+                        <div class="product-body">
+                            <div class="text-warning mb-2">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <h6 class="fw-bold">Organic Oranges</h6>
+                            <div class="product-price">$5.00</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 3 -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card">
+                        <span class="product-badge bg-danger text-white">Hot</span>
+                        <img src="assets/images/img_43.webp" class="product-img" alt="Bananas">
+                        <div class="product-actions">
+                            <button title="Add to Cart"><i class="fa-solid fa-cart-plus"></i></button>
+                            <button title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                            <button title="View Details"><i class="fa-regular fa-eye"></i></button>
+                        </div>
+                        <div class="product-body">
+                            <div class="text-warning mb-2">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
+                            </div>
+                            <h6 class="fw-bold">Fresh Bananas</h6>
+                            <div class="product-price">$2.20</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 4 -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card">
+                        <img src="assets/images/img_35.webp" class="product-img" alt="Milk">
+                        <div class="product-actions">
+                            <button title="Add to Cart"><i class="fa-solid fa-cart-plus"></i></button>
+                            <button title="Wishlist"><i class="fa-regular fa-heart"></i></button>
+                            <button title="View Details"><i class="fa-regular fa-eye"></i></button>
+                        </div>
+                        <div class="product-body">
+                            <div class="text-warning mb-2">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                            </div>
+                            <h6 class="fw-bold">Whole Milk 1L</h6>
+                            <div class="product-price">$1.80</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Promotional Banners -->
+    <section class="py-4 bg-light">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="promo-banner">
+                        <img src="assets/images/img_37.webp" alt="Promo 1">
+                        <div class="promo-content">
+                            <span class="badge bg-warning text-dark mb-2">Weekend Sale</span>
+                            <h3 class="fw-bold">Fresh Meat <br>& Poultry</h3>
+                            <p>Up to 20% off!</p>
+                            <a href="shop.html" class="btn btn-theme-primary btn-sm mt-2">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="promo-banner">
+                        <img src="assets/images/img_23.webp" alt="Promo 2">
+                        <div class="promo-content">
+                            <span class="badge bg-success mb-2">New Arrival</span>
+                            <h3 class="fw-bold">Healthy Bakery<br>Products</h3>
+                            <p>Freshly baked every morning</p>
+                            <a href="shop.html" class="btn btn-theme-primary btn-sm mt-2">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 8: Fresh Arrivals -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="section-title">
+                <h2>Fresh Arrivals</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card">
+                        <span class="product-badge bg-info text-white">New</span>
+                        <img src="assets/images/img_24.webp" class="product-img" alt="Carrots">
+                        <div class="product-body">
+                            <h6 class="fw-bold">Organic Carrots</h6>
+                            <div class="product-price">$1.50</div>
+                            <button class="btn btn-theme-secondary w-100 mt-3 btn-sm">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card">
+                        <img src="assets/images/img_33.webp" class="product-img" alt="Potatoes">
+                        <div class="product-body">
+                            <h6 class="fw-bold">Sweet Potatoes</h6>
+                            <div class="product-price">$2.00</div>
+                            <button class="btn btn-theme-secondary w-100 mt-3 btn-sm">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card">
+                        <span class="product-badge bg-info text-white">New</span>
+                        <img src="assets/images/img_36.webp" class="product-img" alt="Pineapple">
+                        <div class="product-body">
+                            <h6 class="fw-bold">Fresh Pineapple</h6>
+                            <div class="product-price">$4.00</div>
+                            <button class="btn btn-theme-secondary w-100 mt-3 btn-sm">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card">
+                        <img src="assets/images/img_27.webp" class="product-img" alt="Grapes">
+                        <div class="product-body">
+                            <h6 class="fw-bold">Grapes</h6>
+                            <div class="product-price">$5.50</div>
+                            <button class="btn btn-theme-secondary w-100 mt-3 btn-sm">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <a href="shop.html" class="btn btn-theme-secondary px-4 py-2">View All Products</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 9: Top Rated Products -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Top Rated</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="d-flex align-items-center bg-white p-3 rounded shadow-sm">
+                        <img src="assets/images/img_32.webp" alt="Pineapple" class="rounded" style="width: 80px; height: 80px; object-fit: cover;">
+                        <div class="ms-3">
+                            <h6 class="fw-bold mb-1">Juicy Pineapple</h6>
+                            <div class="text-warning" style="font-size: 12px;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                            <div class="text-success fw-bold mt-1">$4.00</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="d-flex align-items-center bg-white p-3 rounded shadow-sm">
+                        <img src="assets/images/img_38.webp" alt="Strawberry" class="rounded" style="width: 80px; height: 80px; object-fit: cover;">
+                        <div class="ms-3">
+                            <h6 class="fw-bold mb-1">Fresh Strawberries</h6>
+                            <div class="text-warning" style="font-size: 12px;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></div>
+                            <div class="text-success fw-bold mt-1">$6.00</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="d-flex align-items-center bg-white p-3 rounded shadow-sm">
+                        <img src="assets/images/img_29.webp" alt="Mango" class="rounded" style="width: 80px; height: 80px; object-fit: cover;">
+                        <div class="ms-3">
+                            <h6 class="fw-bold mb-1">Alphonso Mango</h6>
+                            <div class="text-warning" style="font-size: 12px;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+                            <div class="text-success fw-bold mt-1">$8.50</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 10: Testimonials -->
+    <section class="testimonial-section py-5 position-relative">
+        <div class="container position-relative z-2 ">
+            <div class="section-title text-center text-white mb-5" data-aos="fade-up">
+                <h2 class="text-white">What Our Customers Say</h2>
+                <p class="text-white-50">Don't just take our word for it. Read authentic reviews from our happy shoppers.</p>
+            </div>
+            
+            <div class="swiper testimonialSwiper pb-5" data-aos="zoom-in" data-aos-delay="100">
+                <div class="swiper-wrapper">
+                    <!-- Slide 1 -->
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <i class="fa-solid fa-quote-left quote-icon"></i>
+                            <p class="testimonial-text">"The produce is always fresh, and the delivery is super fast. I love shopping here for my weekly groceries."</p>
+                            <div class="d-flex align-items-center justify-content-center mt-4">
+                                <img src="assets/images/img_42.webp" alt="Sarah Jenkins">
+                                <div class="text-start ms-3">
+                                    <h6 class="testimonial-name mb-0">Sarah Jenkins</h6>
+                                    <div class="testimonial-role">Homemaker</div>
+                                    <div class="text-warning mt-1" style="font-size: 12px;">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <i class="fa-solid fa-quote-left quote-icon"></i>
+                            <p class="testimonial-text">"Excellent customer service! I had an issue with a missing item, and they resolved it immediately with a refund."</p>
+                            <div class="d-flex align-items-center justify-content-center mt-4">
+                                <img src="assets/images/img_28.webp" alt="David Miller">
+                                <div class="text-start ms-3">
+                                    <h6 class="testimonial-name mb-0">David Miller</h6>
+                                    <div class="testimonial-role">Fitness Coach</div>
+                                    <div class="text-warning mt-1" style="font-size: 12px;">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <i class="fa-solid fa-quote-left quote-icon"></i>
+                            <p class="testimonial-text">"I highly recommend their organic section. Great quality and reasonable prices compared to other stores in the area."</p>
+                            <div class="d-flex align-items-center justify-content-center mt-4">
+                                <img src="assets/images/img_34.webp" alt="Emily Clark">
+                                <div class="text-start ms-3">
+                                    <h6 class="testimonial-name mb-0">Emily Clark</h6>
+                                    <div class="testimonial-role">Chef</div>
+                                    <div class="text-warning mt-1" style="font-size: 12px;">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Slide 4 -->
+                     <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <i class="fa-solid fa-quote-left quote-icon"></i>
+                            <p class="testimonial-text">"The app is incredibly easy to use, and my order always arrives right on time perfectly packed. 10/10 experience!"</p>
+                            <div class="d-flex align-items-center justify-content-center mt-4">
+                                <img src="assets/images/img_30.webp" alt="James Wilson">
+                                <div class="text-start ms-3">
+                                    <h6 class="testimonial-name mb-0">James Wilson</h6>
+                                    <div class="testimonial-role">Teacher</div>
+                                    <div class="text-warning mt-1" style="font-size: 12px;">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 11: Blog/News -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Latest News & Articles</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
+                    <div class="card blog-card">
+                        <div class="blog-card-img-wrapper">
+                            <img src="assets/images/img_26.webp" class="card-img-top" alt="Healthy Breakfast">
+                            <div class="blog-date">Oct 12</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">10 Healthy Breakfast Ideas</h5>
+                            <p class="card-text text-muted mb-4">Start your day right with these quick and easy nutritious breakfast recipes...</p>
+                            <a href="#" class="read-more-link">Read More <i class="fa-solid fa-arrow-right ms-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="150">
+                    <div class="card blog-card">
+                        <div class="blog-card-img-wrapper">
+                            <img src="assets/images/img_18.webp" class="card-img-top" alt="Organic Vegetables">
+                            <div class="blog-date">Oct 08</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Why Choose Organic?</h5>
+                            <p class="card-text text-muted mb-4">Discover the top reasons why switching to organic produce can benefit your health...</p>
+                            <a href="#" class="read-more-link">Read More <i class="fa-solid fa-arrow-right ms-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card blog-card">
+                        <div class="blog-card-img-wrapper">
+                            <img src="assets/images/img_39.webp" class="card-img-top" alt="Salad Bowl">
+                            <div class="blog-date">Oct 01</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">The Perfect Salad Recipe</h5>
+                            <p class="card-text text-muted mb-4">Learn how to make the ultimate summer salad with fresh greens and a zesty dressing...</p>
+                            <a href="#" class="read-more-link">Read More <i class="fa-solid fa-arrow-right ms-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 12: Newsletter -->
+    <section class="newsletter-section position-relative overflow-hidden" style="background: linear-gradient(135deg, var(--primary-color) 0%, #115722 100%);">
+        
+        <div class="container py-5 position-relative z-1">
+            <div class="row align-items-center justify-content-between g-4">
+                <div class="col-lg-6 mb-3 mb-lg-0" data-aos="fade-right">
+                    <h2 class="display-6 fw-bold mb-3 text-white"><i class="fa-regular fa-paper-plane me-3"></i>Subscribe for Daily Tips</h2>
+                    <p class="lead mb-0 text-white opacity-75">Join our newsletter and never miss an update on our latest arrivals, special offers, and discounts.</p>
+                </div>
+                <div class="col-lg-5" data-aos="fade-left">
+                    <form class="newsletter-form">
+                        <div class="bg-white p-2 rounded-pill d-flex align-items-center shadow-lg" style="border: 2px solid rgba(255,255,255,0.2);">
+                            <input type="email" class="form-control border-0 shadow-none ps-4 bg-transparent fw-medium" placeholder="Enter your email address" required style="font-size: 1.05rem;">
+                            <button type="submit" class="btn btn-theme-primary m-0 flex-shrink-0 shadow-none">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 14: Footer Container -->
+    <div id="footer-container"></div>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- GSAP JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- Three JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom Script -->
+    <script src="js/script.js"></script>
+</body>
+</html>
+
+
+
