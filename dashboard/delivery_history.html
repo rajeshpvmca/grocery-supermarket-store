@@ -3,139 +3,238 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Delivery History</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <title>Delivery History - Grocery & Supermarket</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: transparent; }
-        .dash-card { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); height: 100%; border: 1px solid #f1f5f9; }
-        .text-success { color: #28a745 !important; }
-        .bg-success-light { background: rgba(40, 167, 69, 0.1); color: #28a745; }
-        .chart-container { min-height: 300px; }
-        @media (max-width: 576px) { .dash-card { padding: 15px; } }
+        :root {
+            --theme-color: #28a745;
+            --theme-color-hover: #218838;
+            --theme-light: rgba(40, 167, 69, 0.1);
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --bg-body: #f8fafc;
+            --border-color: #e2e8f0;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-body); color: var(--text-dark); }
+        .dash-card { background: #fff; border-radius: 16px; padding: 24px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05); border: 1px solid var(--border-color); display: flex; flex-direction: column; min-height: calc(100vh - 120px); }
+        .text-theme { color: var(--theme-color) !important; }
+        .bg-theme { background-color: var(--theme-color) !important; color: white; }
+        
+        .filter-btn { border-radius: 20px; font-weight: 500; padding: 8px 16px; border: 1px solid var(--border-color); background: #fff; color: var(--text-muted); transition: all 0.2s; }
+        .filter-btn.active, .filter-btn:hover { background: var(--theme-color); color: #fff; border-color: var(--theme-color); }
+        
+        .table-custom { margin-bottom: 0; }
+        .table-custom th { border-bottom-width: 1px; color: var(--text-muted); font-weight: 600; font-size: 13px; text-transform: uppercase; padding: 16px; background: #f8fafc; }
+        .table-custom td { padding: 16px; vertical-align: middle; font-size: 14px; border-bottom: 1px solid var(--border-color); }
+        .table-custom tr:last-child td { border-bottom: none; }
+        
+        .status-badge { font-size: 12px; font-weight: 600; padding: 6px 12px; border-radius: 20px; }
+        .status-delivered { background: rgba(40, 167, 69, 0.1); color: #28a745; border: 1px solid rgba(40, 167, 69, 0.2); }
+        .status-cancelled { background: rgba(220, 53, 69, 0.1); color: #dc3545; border: 1px solid rgba(220, 53, 69, 0.2); }
+        
+        .history-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; background: var(--theme-light); color: var(--theme-color); }
+        .history-icon-cancelled { background: rgba(220, 53, 69, 0.1); color: #dc3545; }
+
+        @media (max-width: 768px) {
+            .table-custom thead { display: none; }
+            .table-custom tr { display: block; border-bottom: 2px solid var(--border-color); margin-bottom: 1rem; padding-bottom: 1rem; }
+            .table-custom td { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f1f5f9; padding: 10px 0; text-align: right; }
+            .table-custom td::before { content: attr(data-label); font-weight: 600; color: var(--text-muted); font-size: 12px; text-transform: uppercase; float: left; text-align: left; }
+            .table-custom td:last-child { border-bottom: 0; }
+        }
     </style>
 </head>
 <body>
-    <div class="container-fluid py-4">
-        <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
-            <h4 class="fw-bold mb-0 text-dark">Delivery History</h4>
-            <button class="btn btn-success rounded-pill px-4" style="background:#28a745; border:none;">Action</button>
-        </div>
+    <div class="container-fluid py-4 px-lg-4">
         
-        <div class="row g-4 mb-4">
-            <div class="col-6 col-md-3">
-                <div class="dash-card text-center">
-                    <div class="text-muted small mb-2">Metric 1</div>
-                    <h3 class="fw-bold text-success mb-0">644</h3>
-                </div>
+        <!-- Header -->
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+            <div>
+                <h4 class="fw-bold mb-1 text-dark">Delivery History</h4>
+                <p class="text-muted mb-0 small">Review your past deliveries and earnings.</p>
             </div>
-            <div class="col-6 col-md-3">
-                <div class="dash-card text-center">
-                    <div class="text-muted small mb-2">Metric 2</div>
-                    <h3 class="fw-bold text-success mb-0">4086</h3>
-                </div>
-            </div>
-            <div class="col-6 col-md-3">
-                <div class="dash-card text-center">
-                    <div class="text-muted small mb-2">Metric 3</div>
-                    <h3 class="fw-bold text-success mb-0">59%</h3>
-                </div>
-            </div>
-            <div class="col-6 col-md-3">
-                <div class="dash-card text-center">
-                    <div class="text-muted small mb-2">Metric 4</div>
-                    <h3 class="fw-bold text-success mb-0">6121</h3>
+            <div class="d-flex gap-2">
+                <div class="input-group w-auto shadow-sm rounded">
+                    <span class="input-group-text bg-white border-end-0 text-muted"><i class="bi bi-calendar3"></i></span>
+                    <select class="form-select border-start-0 shadow-none bg-white">
+                        <option>Oct 2023</option>
+                        <option>Sep 2023</option>
+                        <option>Aug 2023</option>
+                    </select>
                 </div>
             </div>
         </div>
 
-        <div class="row g-4">
-            <div class="col-12 col-lg-8">
-                <div class="dash-card">
-                    <h5 class="fw-bold mb-4">Performance Overview</h5>
-                    <div id="chart1_delivery_history" class="chart-container"></div>
-                </div>
+        <div class="dash-card p-0 overflow-hidden">
+            <!-- Filters -->
+            <div class="p-4 border-bottom d-flex flex-wrap gap-2">
+                <button class="filter-btn active">All History</button>
+                <button class="filter-btn">Delivered</button>
+                <button class="filter-btn">Cancelled</button>
             </div>
-            <div class="col-12 col-lg-4">
-                <div class="dash-card">
-                    <h5 class="fw-bold mb-4">Recent Activity</h5>
-                    
-                    <div class="d-flex align-items-center justify-content-between mb-3 pb-3 border-bottom">
-                        <div>
-                            <div class="fw-semibold text-dark">Activity 1</div>
-                            <div class="small text-muted">2 hours ago</div>
-                        </div>
-                        <span class="badge bg-success-light">Completed</span>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between mb-3 pb-3 border-bottom">
-                        <div>
-                            <div class="fw-semibold text-dark">Activity 2</div>
-                            <div class="small text-muted">2 hours ago</div>
-                        </div>
-                        <span class="badge bg-success-light">Completed</span>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between mb-3 pb-3 border-bottom">
-                        <div>
-                            <div class="fw-semibold text-dark">Activity 3</div>
-                            <div class="small text-muted">2 hours ago</div>
-                        </div>
-                        <span class="badge bg-success-light">Completed</span>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between mb-3 pb-3 border-bottom">
-                        <div>
-                            <div class="fw-semibold text-dark">Activity 4</div>
-                            <div class="small text-muted">2 hours ago</div>
-                        </div>
-                        <span class="badge bg-success-light">Completed</span>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between mb-3 pb-3 border-bottom">
-                        <div>
-                            <div class="fw-semibold text-dark">Activity 5</div>
-                            <div class="small text-muted">2 hours ago</div>
-                        </div>
-                        <span class="badge bg-success-light">Completed</span>
-                    </div>
-                </div>
+
+            <!-- Table -->
+            <div class="table-responsive flex-grow-1">
+                <table class="table table-custom w-100">
+                    <thead>
+                        <tr>
+                            <th>Delivery Info</th>
+                            <th>Date & Time</th>
+                            <th>Distance</th>
+                            <th>Earnings</th>
+                            <th>Customer Rating</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Delivery Info">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="history-icon"><i class="bi bi-check2-circle"></i></div>
+                                    <div>
+                                        <div class="fw-bold text-dark">#ORD-8819</div>
+                                        <div class="small text-muted">Customer: Alice Smith</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td data-label="Date & Time" class="text-muted">Today, 10:30 AM</td>
+                            <td data-label="Distance" class="fw-medium text-dark">3.2 km</td>
+                            <td data-label="Earnings">
+                                <div class="fw-bold text-theme fs-6">$12.50</div>
+                                <div class="small text-muted">Fee: $10.50 | Tip: $2.00</div>
+                            </td>
+                            <td data-label="Customer Rating" class="text-warning fw-bold"><i class="bi bi-star-fill"></i> 5.0</td>
+                            <td data-label="Status"><span class="status-badge status-delivered">Delivered</span></td>
+                        </tr>
+
+                        <tr>
+                            <td data-label="Delivery Info">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="history-icon"><i class="bi bi-check2-circle"></i></div>
+                                    <div>
+                                        <div class="fw-bold text-dark">#ORD-8815</div>
+                                        <div class="small text-muted">Customer: John Doe</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td data-label="Date & Time" class="text-muted">Today, 09:15 AM</td>
+                            <td data-label="Distance" class="fw-medium text-dark">1.8 km</td>
+                            <td data-label="Earnings">
+                                <div class="fw-bold text-theme fs-6">$6.00</div>
+                                <div class="small text-muted">Fee: $6.00 | Tip: $0.00</div>
+                            </td>
+                            <td data-label="Customer Rating" class="text-warning fw-bold"><i class="bi bi-star-fill"></i> 4.5</td>
+                            <td data-label="Status"><span class="status-badge status-delivered">Delivered</span></td>
+                        </tr>
+
+                        <tr>
+                            <td data-label="Delivery Info">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="history-icon history-icon-cancelled"><i class="bi bi-x-circle"></i></div>
+                                    <div>
+                                        <div class="fw-bold text-dark">#ORD-8812</div>
+                                        <div class="small text-muted">Customer: Emma Watson</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td data-label="Date & Time" class="text-muted">Yesterday, 18:40 PM</td>
+                            <td data-label="Distance" class="fw-medium text-dark">5.5 km</td>
+                            <td data-label="Earnings">
+                                <div class="fw-bold text-dark fs-6">$0.00</div>
+                                <div class="small text-muted">Cancelled by Customer</div>
+                            </td>
+                            <td data-label="Customer Rating" class="text-muted">-</td>
+                            <td data-label="Status"><span class="status-badge status-cancelled">Cancelled</span></td>
+                        </tr>
+                        
+                        <tr>
+                            <td data-label="Delivery Info">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="history-icon"><i class="bi bi-check2-circle"></i></div>
+                                    <div>
+                                        <div class="fw-bold text-dark">#ORD-8810</div>
+                                        <div class="small text-muted">Customer: Michael Ross</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td data-label="Date & Time" class="text-muted">Yesterday, 14:20 PM</td>
+                            <td data-label="Distance" class="fw-medium text-dark">4.1 km</td>
+                            <td data-label="Earnings">
+                                <div class="fw-bold text-theme fs-6">$14.50</div>
+                                <div class="small text-muted">Fee: $9.50 | Tip: $5.00</div>
+                            </td>
+                            <td data-label="Customer Rating" class="text-warning fw-bold"><i class="bi bi-star-fill"></i> 5.0</td>
+                            <td data-label="Status"><span class="status-badge status-delivered">Delivered</span></td>
+                        </tr>
+                        
+                        <tr>
+                            <td data-label="Delivery Info">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="history-icon"><i class="bi bi-check2-circle"></i></div>
+                                    <div>
+                                        <div class="fw-bold text-dark">#ORD-8805</div>
+                                        <div class="small text-muted">Customer: Sarah Jenkins</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td data-label="Date & Time" class="text-muted">11 Oct 2023, 11:15 AM</td>
+                            <td data-label="Distance" class="fw-medium text-dark">2.4 km</td>
+                            <td data-label="Earnings">
+                                <div class="fw-bold text-theme fs-6">$8.50</div>
+                                <div class="small text-muted">Fee: $8.50 | Tip: $0.00</div>
+                            </td>
+                            <td data-label="Customer Rating" class="text-warning fw-bold"><i class="bi bi-star-fill"></i> 4.8</td>
+                            <td data-label="Status"><span class="status-badge status-delivered">Delivered</span></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-        </div>
-        
-        <div class="row g-4 mt-1">
-            <div class="col-12">
-                <div class="dash-card">
-                    <h5 class="fw-bold mb-4">Detailed Analytics</h5>
-                    <div id="chart2_delivery_history" class="chart-container"></div>
-                </div>
+
+            <!-- Pagination -->
+            <div class="p-4 d-flex justify-content-between align-items-center flex-wrap gap-3 mt-auto border-top">
+                <div class="text-muted small fw-medium">Showing 1 to 5 of 124 deliveries</div>
+                <nav>
+                    <ul class="pagination pagination-sm mb-0">
+                        <li class="page-item disabled"><a class="page-link text-muted" href="#">Previous</a></li>
+                        <li class="page-item active"><a class="page-link bg-theme border-theme" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link text-theme" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link text-theme" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link text-theme" href="#">Next</a></li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var opt1 = {
-                series: [{ name: 'Data', data: [11,28,65,23,11,29,66] }],
-                chart: { type: 'area', height: 300, toolbar: { show: false }, fontFamily: 'Inter, sans-serif' },
-                colors: ['#28a745'],
-                fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.4, opacityTo: 0.05, stops: [0, 90, 100] } },
-                dataLabels: { enabled: false },
-                stroke: { curve: 'smooth', width: 3 },
-                xaxis: { categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] }
-            };
-            var chart1 = new ApexCharts(document.querySelector("#chart1_delivery_history"), opt1);
-            chart1.render();
+            const filters = document.querySelectorAll('.filter-btn');
+            filters.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filters.forEach(f => f.classList.remove('active'));
+                    btn.classList.add('active');
+                });
+            });
+        });
+    </script>
+    <!-- Redirect Script for Buttons and Dummy Links -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('button').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.top.location.href = '../404.html';
+                });
+            });
             
-            var opt2 = {
-                series: [{ name: 'Metric A', data: [27,25,17,45,44,17] }, { name: 'Metric B', data: [9,25,30,47,19,6] }],
-                chart: { type: 'bar', height: 300, toolbar: { show: false }, fontFamily: 'Inter, sans-serif' },
-                colors: ['#28a745', '#82c91e'],
-                plotOptions: { bar: { borderRadius: 4, columnWidth: '50%' } },
-                dataLabels: { enabled: false },
-                stroke: { show: true, width: 2, colors: ['transparent'] },
-                xaxis: { categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'] },
-                fill: { opacity: 1 }
-            };
-            var chart2 = new ApexCharts(document.querySelector("#chart2_delivery_history"), opt2);
-            chart2.render();
+            document.querySelectorAll('a[href="#"], a[href=""]').forEach(a => {
+                a.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.top.location.href = '../404.html';
+                });
+            });
         });
     </script>
 </body>

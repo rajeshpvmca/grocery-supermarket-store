@@ -3,108 +3,244 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Shifts</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <title>Driver Dashboard - Grocery & Supermarket</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: transparent; }
-        .dash-card { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); height: 100%; border: 1px solid #f1f5f9; }
-        .text-success { color: #28a745 !important; }
-        .bg-success-light { background: rgba(40, 167, 69, 0.1); color: #28a745; }
-        .chart-container { min-height: 300px; }
-        @media (max-width: 576px) { .dash-card { padding: 15px; } }
+        :root {
+            --theme-color: #28a745;
+            --theme-color-hover: #218838;
+            --theme-light: rgba(40, 167, 69, 0.1);
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --bg-body: #f8fafc;
+            --border-color: #e2e8f0;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-body); color: var(--text-dark); }
+        .dash-card { background: #fff; border-radius: 16px; padding: 24px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05); border: 1px solid var(--border-color); display: flex; flex-direction: column; }
+        .text-theme { color: var(--theme-color) !important; }
+        .bg-theme { background-color: var(--theme-color) !important; color: white; }
+        .bg-theme-light { background: var(--theme-light); color: var(--theme-color); }
+
+        .stat-icon { width: 54px; height: 54px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+        .stat-value { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; color: var(--text-dark); margin-bottom: 4px; }
+        .stat-label { font-size: 14px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
+        .delivery-route-card { border-left: 4px solid var(--theme-color); background: #fff; border-radius: 0 12px 12px 0; padding: 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.04); margin-bottom: 16px; border-top: 1px solid var(--border-color); border-right: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+        .route-point { position: relative; padding-left: 24px; margin-bottom: 12px; }
+        .route-point:last-child { margin-bottom: 0; }
+        .route-point::before { content: ''; position: absolute; left: 0; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: var(--theme-color); }
+        .route-point:first-child::after { content: ''; position: absolute; left: 5px; top: 16px; width: 2px; height: calc(100% + 4px); background: #e2e8f0; }
+        .route-point:first-child::before { background: #0dcaf0; }
+
+        .chart-container { min-height: 280px; width: 100%; flex-grow: 1; }
+        
+        .switch-custom .form-check-input { width: 3em; height: 1.5em; cursor: pointer; }
+        .switch-custom .form-check-input:checked { background-color: var(--theme-color); border-color: var(--theme-color); }
     </style>
 </head>
 <body>
-    <div class="container-fluid py-4">
-        <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
-            <h4 class="fw-bold mb-0 text-dark">My Shifts</h4>
-            <button class="btn btn-success rounded-pill px-4" style="background:#28a745; border:none;">Action</button>
-        </div>
+    <div class="container-fluid py-4 px-lg-4">
         
+        <!-- Header -->
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+            <div>
+                <h4 class="fw-bold mb-1 text-dark">Driver Dashboard</h4>
+                <p class="text-muted mb-0 small">Welcome back, Mike! Have a safe ride.</p>
+            </div>
+            <div class="d-flex align-items-center gap-3 bg-white px-4 py-2 rounded-pill shadow-sm border">
+                <span class="fw-bold text-dark">Shift Status</span>
+                <div class="form-check form-switch switch-custom mb-0">
+                    <input class="form-check-input" type="checkbox" checked>
+                </div>
+                <span class="badge bg-success">Online</span>
+            </div>
+        </div>
+
+        <!-- KPI Cards -->
         <div class="row g-4 mb-4">
-            <div class="col-6 col-md-3">
-                <div class="dash-card text-center">
-                    <div class="text-muted small mb-2">Metric 1</div>
-                    <h3 class="fw-bold text-success mb-0">171</h3>
+            <div class="col-12 col-sm-6 col-xl-3">
+                <div class="dash-card h-100 justify-content-center">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <div class="stat-label">Deliveries Today</div>
+                            <div class="stat-value">12</div>
+                            <div class="small text-success fw-medium"><i class="bi bi-check-circle"></i> 3 remaining</div>
+                        </div>
+                        <div class="stat-icon bg-theme-light"><i class="bi bi-box-seam text-theme"></i></div>
+                    </div>
                 </div>
             </div>
-            <div class="col-6 col-md-3">
-                <div class="dash-card text-center">
-                    <div class="text-muted small mb-2">Metric 2</div>
-                    <h3 class="fw-bold text-success mb-0">5</h3>
+            <div class="col-12 col-sm-6 col-xl-3">
+                <div class="dash-card h-100 justify-content-center">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <div class="stat-label">Earnings Today</div>
+                            <div class="stat-value">$85.50</div>
+                            <div class="small text-muted fw-medium">+$15.00 in tips</div>
+                        </div>
+                        <div class="stat-icon" style="background: rgba(13, 202, 240, 0.1); color: #0dcaf0;"><i class="bi bi-wallet2"></i></div>
+                    </div>
                 </div>
             </div>
-            <div class="col-6 col-md-3">
-                <div class="dash-card text-center">
-                    <div class="text-muted small mb-2">Metric 3</div>
-                    <h3 class="fw-bold text-success mb-0">73%</h3>
+            <div class="col-12 col-sm-6 col-xl-3">
+                <div class="dash-card h-100 justify-content-center">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <div class="stat-label">Distance Covered</div>
+                            <div class="stat-value">42 km</div>
+                            <div class="small text-muted fw-medium">Avg: 3.5 km/order</div>
+                        </div>
+                        <div class="stat-icon" style="background: rgba(111, 66, 193, 0.1); color: #6f42c1;"><i class="bi bi-geo-alt"></i></div>
+                    </div>
                 </div>
             </div>
-            <div class="col-6 col-md-3">
-                <div class="dash-card text-center">
-                    <div class="text-muted small mb-2">Metric 4</div>
-                    <h3 class="fw-bold text-success mb-0">1502</h3>
+            <div class="col-12 col-sm-6 col-xl-3">
+                <div class="dash-card h-100 justify-content-center">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <div class="stat-label">Rating</div>
+                            <div class="stat-value">4.9</div>
+                            <div class="small text-warning fw-medium">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
+                            </div>
+                        </div>
+                        <div class="stat-icon" style="background: rgba(255, 193, 7, 0.1); color: #ffc107;"><i class="bi bi-star"></i></div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="row g-4">
-            <div class="col-12 col-lg-8">
+        <div class="row g-4 align-items-stretch">
+            <!-- Left Col: Next Delivery -->
+            <div class="col-12 col-xl-5 col-xxl-4 d-flex flex-column gap-4">
                 <div class="dash-card">
-                    <h5 class="fw-bold mb-4">Performance Overview</h5>
-                    <div id="chart1_delivery_overview" class="chart-container"></div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-4">
-                <div class="dash-card">
-                    <h5 class="fw-bold mb-4">Recent Activity</h5>
+                    <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
+                        <h5 class="fw-bold mb-0">Current Assignment</h5>
+                        <span class="badge bg-danger pulse">Urgent</span>
+                    </div>
                     
-                    <div class="d-flex align-items-center justify-content-between mb-3 pb-3 border-bottom">
-                        <div>
-                            <div class="fw-semibold text-dark">Activity 1</div>
-                            <div class="small text-muted">2 hours ago</div>
+                    <div class="delivery-route-card">
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="fw-bold">#ORD-8821</span>
+                            <span class="fw-bold text-theme">$8.50 Earn</span>
                         </div>
-                        <span class="badge bg-success-light">Completed</span>
+                        
+                        <div class="route-point">
+                            <div class="small text-muted fw-bold text-uppercase">Pickup</div>
+                            <div class="fw-semibold text-dark">Grocery Central Store</div>
+                            <div class="small text-muted">123 Main St, Block B</div>
+                        </div>
+                        <div class="route-point">
+                            <div class="small text-muted fw-bold text-uppercase">Dropoff</div>
+                            <div class="fw-semibold text-dark">Sarah Jenkins</div>
+                            <div class="small text-muted">456 Elm St, Apt 12C (2.4 km away)</div>
+                        </div>
                     </div>
-                    <div class="d-flex align-items-center justify-content-between mb-3 pb-3 border-bottom">
-                        <div>
-                            <div class="fw-semibold text-dark">Activity 2</div>
-                            <div class="small text-muted">2 hours ago</div>
-                        </div>
-                        <span class="badge bg-success-light">Completed</span>
+                    
+                    <div class="d-flex gap-2 mt-auto pt-2">
+                        <button class="btn btn-outline-secondary w-50 fw-bold"><i class="bi bi-x-lg me-2"></i>Decline</button>
+                        <a href="delivery_active.html" class="btn btn-theme w-50 fw-bold"><i class="bi bi-geo-alt-fill me-2"></i>Navigate</a>
                     </div>
-                    <div class="d-flex align-items-center justify-content-between mb-3 pb-3 border-bottom">
+                </div>
+                
+                <!-- Recent Reviews -->
+                <div class="dash-card flex-grow-1">
+                    <h5 class="fw-bold mb-4">Latest Feedback</h5>
+                    <div class="d-flex gap-3 mb-3 border-bottom pb-3">
+                        <div class="bg-light rounded-circle d-flex align-items-center justify-content-center fw-bold text-dark border" style="width:40px; height:40px; flex-shrink: 0;">JS</div>
                         <div>
-                            <div class="fw-semibold text-dark">Activity 3</div>
-                            <div class="small text-muted">2 hours ago</div>
+                            <div class="d-flex justify-content-between">
+                                <span class="fw-bold text-dark">John S.</span>
+                                <span class="text-warning small"><i class="bi bi-star-fill"></i> 5.0</span>
+                            </div>
+                            <p class="small text-muted mb-0 mt-1">"Very fast delivery and polite driver. Produce arrived fresh!"</p>
                         </div>
-                        <span class="badge bg-success-light">Completed</span>
                     </div>
-                    <div class="d-flex align-items-center justify-content-between mb-3 pb-3 border-bottom">
+                    <div class="d-flex gap-3">
+                        <div class="bg-light rounded-circle d-flex align-items-center justify-content-center fw-bold text-dark border" style="width:40px; height:40px; flex-shrink: 0;">AM</div>
                         <div>
-                            <div class="fw-semibold text-dark">Activity 4</div>
-                            <div class="small text-muted">2 hours ago</div>
+                            <div class="d-flex justify-content-between">
+                                <span class="fw-bold text-dark">Alice M.</span>
+                                <span class="text-warning small"><i class="bi bi-star-fill"></i> 5.0</span>
+                            </div>
+                            <p class="small text-muted mb-0 mt-1">"Followed drop-off instructions perfectly. Thank you!"</p>
                         </div>
-                        <span class="badge bg-success-light">Completed</span>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between mb-3 pb-3 border-bottom">
-                        <div>
-                            <div class="fw-semibold text-dark">Activity 5</div>
-                            <div class="small text-muted">2 hours ago</div>
-                        </div>
-                        <span class="badge bg-success-light">Completed</span>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="row g-4 mt-1">
-            <div class="col-12">
+
+            <!-- Right Col: Charts & Activity -->
+            <div class="col-12 col-xl-7 col-xxl-8 d-flex flex-column gap-4">
                 <div class="dash-card">
-                    <h5 class="fw-bold mb-4">Detailed Analytics</h5>
-                    <div id="chart2_delivery_overview" class="chart-container"></div>
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h5 class="fw-bold mb-0">Earnings This Week</h5>
+                        <select class="form-select form-select-sm w-auto border bg-light rounded-pill px-3 shadow-sm">
+                            <option>This Week</option>
+                            <option>Last Week</option>
+                        </select>
+                    </div>
+                    <div id="earnings_chart" class="chart-container"></div>
+                </div>
+                
+                <div class="dash-card flex-grow-1">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h5 class="fw-bold mb-0">Completed Today</h5>
+                        <a href="delivery_history.html" class="text-theme text-decoration-none small fw-semibold">View All History <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                    <div class="table-responsive mt-auto">
+                        <table class="table table-borderless align-middle mb-0">
+                            <tbody>
+                                <tr class="border-bottom">
+                                    <td class="px-0 py-3">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="bg-theme-light text-theme rounded p-2"><i class="bi bi-check2-circle fs-5"></i></div>
+                                            <div>
+                                                <div class="fw-bold text-dark">Order #ORD-8819</div>
+                                                <div class="small text-muted">10:30 AM • 3.2 km</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-end px-0 py-3">
+                                        <div class="fw-bold text-theme">+$12.50</div>
+                                        <div class="small text-muted">Includes $2 tip</div>
+                                    </td>
+                                </tr>
+                                <tr class="border-bottom">
+                                    <td class="px-0 py-3">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="bg-theme-light text-theme rounded p-2"><i class="bi bi-check2-circle fs-5"></i></div>
+                                            <div>
+                                                <div class="fw-bold text-dark">Order #ORD-8815</div>
+                                                <div class="small text-muted">09:15 AM • 1.8 km</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-end px-0 py-3">
+                                        <div class="fw-bold text-theme">+$6.00</div>
+                                        <div class="small text-muted">Delivery fee</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-0 py-3">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="bg-theme-light text-theme rounded p-2"><i class="bi bi-check2-circle fs-5"></i></div>
+                                            <div>
+                                                <div class="fw-bold text-dark">Order #ORD-8810</div>
+                                                <div class="small text-muted">08:00 AM • 5.1 km</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-end px-0 py-3">
+                                        <div class="fw-bold text-theme">+$15.00</div>
+                                        <div class="small text-muted">Includes $5 tip</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -112,30 +248,36 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var opt1 = {
-                series: [{ name: 'Data', data: [52,76,70,88,12,38,53] }],
-                chart: { type: 'area', height: 300, toolbar: { show: false }, fontFamily: 'Inter, sans-serif' },
-                colors: ['#28a745'],
-                fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.4, opacityTo: 0.05, stops: [0, 90, 100] } },
+            var optionsEarnings = {
+                series: [{ name: 'Earnings', data: [45, 62, 38, 85, 0, 0, 0] }, { name: 'Tips', data: [10, 15, 5, 20, 0, 0, 0] }],
+                chart: { type: 'bar', height: '100%', minHeight: 280, stacked: true, toolbar: { show: false }, fontFamily: 'Inter, sans-serif' },
+                colors: ['#28a745', '#ffc107'],
+                plotOptions: { bar: { borderRadius: 4, columnWidth: '40%' } },
                 dataLabels: { enabled: false },
-                stroke: { curve: 'smooth', width: 3 },
-                xaxis: { categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] }
+                xaxis: { categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], axisBorder: { show: false }, axisTicks: { show: false } },
+                yaxis: { labels: { formatter: function (val) { return "$" + val; } } },
+                grid: { borderColor: '#f1f5f9', strokeDashArray: 4, padding: { top: 0, bottom: 0, left: 10, right: 10 } },
+                legend: { position: 'top', horizontalAlign: 'right' }
             };
-            var chart1 = new ApexCharts(document.querySelector("#chart1_delivery_overview"), opt1);
-            chart1.render();
+            new ApexCharts(document.querySelector("#earnings_chart"), optionsEarnings).render();
+        });
+    </script>
+    <!-- Redirect Script for Buttons and Dummy Links -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('button').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.top.location.href = '../404.html';
+                });
+            });
             
-            var opt2 = {
-                series: [{ name: 'Metric A', data: [42,10,33,22,25,25] }, { name: 'Metric B', data: [17,12,4,49,13,6] }],
-                chart: { type: 'bar', height: 300, toolbar: { show: false }, fontFamily: 'Inter, sans-serif' },
-                colors: ['#28a745', '#82c91e'],
-                plotOptions: { bar: { borderRadius: 4, columnWidth: '50%' } },
-                dataLabels: { enabled: false },
-                stroke: { show: true, width: 2, colors: ['transparent'] },
-                xaxis: { categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'] },
-                fill: { opacity: 1 }
-            };
-            var chart2 = new ApexCharts(document.querySelector("#chart2_delivery_overview"), opt2);
-            chart2.render();
+            document.querySelectorAll('a[href="#"], a[href=""]').forEach(a => {
+                a.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.top.location.href = '../404.html';
+                });
+            });
         });
     </script>
 </body>

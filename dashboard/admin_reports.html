@@ -3,139 +3,222 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Reports</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <title>Reports & Analytics - Grocery & Supermarket</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: transparent; }
-        .dash-card { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); height: 100%; border: 1px solid #f1f5f9; }
-        .text-success { color: #28a745 !important; }
-        .bg-success-light { background: rgba(40, 167, 69, 0.1); color: #28a745; }
-        .chart-container { min-height: 300px; }
-        @media (max-width: 576px) { .dash-card { padding: 15px; } }
+        :root {
+            --theme-color: #28a745;
+            --theme-color-hover: #218838;
+            --theme-light: rgba(40, 167, 69, 0.1);
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --bg-body: #f8fafc;
+            --border-color: #e2e8f0;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-body); color: var(--text-dark); }
+        .dash-card { background: #fff; border-radius: 16px; padding: 24px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05); border: 1px solid var(--border-color); height: 100%; }
+        .text-theme { color: var(--theme-color) !important; }
+        .bg-theme { background-color: var(--theme-color) !important; color: white; }
+        .bg-theme-light { background: var(--theme-light); color: var(--theme-color); }
+        
+        .chart-container { min-height: 350px; }
+        
+        .summary-box { background: #f8fafc; border-radius: 12px; padding: 16px; border: 1px solid var(--border-color); }
+        .summary-label { font-size: 13px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; margin-bottom: 4px; }
+        .summary-val { font-size: 24px; font-weight: 700; color: var(--text-dark); }
     </style>
 </head>
 <body>
-    <div class="container-fluid py-4">
-        <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
-            <h4 class="fw-bold mb-0 text-dark">Reports</h4>
-            <button class="btn btn-success rounded-pill px-4" style="background:#28a745; border:none;">Action</button>
-        </div>
+    <div class="container-fluid py-4 px-lg-4">
         
+        <!-- Header -->
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+            <div>
+                <h4 class="fw-bold mb-1 text-dark">Reports & Analytics</h4>
+                <p class="text-muted mb-0 small">Comprehensive data insights and exports.</p>
+            </div>
+            <div class="d-flex gap-2 flex-wrap">
+                <div class="input-group w-auto shadow-sm rounded-pill overflow-hidden bg-white border">
+                    <span class="input-group-text bg-white border-0 text-muted"><i class="bi bi-calendar3"></i></span>
+                    <select class="form-select border-0 shadow-none bg-white">
+                        <option>Last 30 Days</option>
+                        <option>This Month</option>
+                        <option>Last Quarter</option>
+                        <option>This Year</option>
+                    </select>
+                </div>
+                <button class="btn btn-outline-secondary rounded-pill shadow-sm bg-white"><i class="bi bi-filetype-csv me-2"></i>Export CSV</button>
+                <button class="btn btn-theme rounded-pill shadow-sm"><i class="bi bi-filetype-pdf me-2"></i>Export PDF</button>
+            </div>
+        </div>
+
+        <!-- Summary Boxes -->
         <div class="row g-4 mb-4">
             <div class="col-6 col-md-3">
-                <div class="dash-card text-center">
-                    <div class="text-muted small mb-2">Metric 1</div>
-                    <h3 class="fw-bold text-success mb-0">111</h3>
+                <div class="summary-box text-center">
+                    <div class="summary-label">Gross Sales</div>
+                    <div class="summary-val text-theme">$145,250</div>
+                    <div class="small text-success mt-2"><i class="bi bi-arrow-up-short"></i>+24.5%</div>
                 </div>
             </div>
             <div class="col-6 col-md-3">
-                <div class="dash-card text-center">
-                    <div class="text-muted small mb-2">Metric 2</div>
-                    <h3 class="fw-bold text-success mb-0">1362</h3>
+                <div class="summary-box text-center">
+                    <div class="summary-label">Net Profit</div>
+                    <div class="summary-val">$32,840</div>
+                    <div class="small text-success mt-2"><i class="bi bi-arrow-up-short"></i>+12.2%</div>
                 </div>
             </div>
             <div class="col-6 col-md-3">
-                <div class="dash-card text-center">
-                    <div class="text-muted small mb-2">Metric 3</div>
-                    <h3 class="fw-bold text-success mb-0">16%</h3>
+                <div class="summary-box text-center">
+                    <div class="summary-label">Avg Order Value</div>
+                    <div class="summary-val">$85.40</div>
+                    <div class="small text-danger mt-2"><i class="bi bi-arrow-down-short"></i>-2.1%</div>
                 </div>
             </div>
             <div class="col-6 col-md-3">
-                <div class="dash-card text-center">
-                    <div class="text-muted small mb-2">Metric 4</div>
-                    <h3 class="fw-bold text-success mb-0">5790</h3>
+                <div class="summary-box text-center">
+                    <div class="summary-label">Refund Rate</div>
+                    <div class="summary-val">1.2%</div>
+                    <div class="small text-success mt-2"><i class="bi bi-arrow-down-short"></i>-0.4%</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts -->
+        <div class="row g-4 mb-4">
+            <!-- Sales Report (Line Chart) -->
+            <div class="col-12 col-xl-8">
+                <div class="dash-card">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <h5 class="fw-bold mb-1">Sales Performance</h5>
+                            <div class="small text-muted">Daily revenue for the selected period.</div>
+                        </div>
+                    </div>
+                    <div id="sales_report_chart" class="chart-container"></div>
+                </div>
+            </div>
+            
+            <!-- Category Breakdown (Donut Chart) -->
+            <div class="col-12 col-xl-4">
+                <div class="dash-card">
+                    <h5 class="fw-bold mb-1">Sales by Category</h5>
+                    <div class="small text-muted mb-4">Revenue distribution across departments.</div>
+                    <div id="category_report_chart" class="chart-container"></div>
                 </div>
             </div>
         </div>
 
         <div class="row g-4">
-            <div class="col-12 col-lg-8">
+            <!-- Orders vs Returns (Bar Chart) -->
+            <div class="col-12 col-xl-6">
                 <div class="dash-card">
-                    <h5 class="fw-bold mb-4">Performance Overview</h5>
-                    <div id="chart1_admin_reports" class="chart-container"></div>
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <h5 class="fw-bold mb-1">Orders Fulfillment</h5>
+                            <div class="small text-muted">Completed orders vs returns/cancellations.</div>
+                        </div>
+                    </div>
+                    <div id="orders_report_chart" class="chart-container"></div>
                 </div>
             </div>
-            <div class="col-12 col-lg-4">
+            
+            <!-- Traffic Sources (Horizontal Bar Chart) -->
+            <div class="col-12 col-xl-6">
                 <div class="dash-card">
-                    <h5 class="fw-bold mb-4">Recent Activity</h5>
-                    
-                    <div class="d-flex align-items-center justify-content-between mb-3 pb-3 border-bottom">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
                         <div>
-                            <div class="fw-semibold text-dark">Activity 1</div>
-                            <div class="small text-muted">2 hours ago</div>
+                            <h5 class="fw-bold mb-1">Traffic & Acquisition</h5>
+                            <div class="small text-muted">Where your customers are coming from.</div>
                         </div>
-                        <span class="badge bg-success-light">Completed</span>
                     </div>
-                    <div class="d-flex align-items-center justify-content-between mb-3 pb-3 border-bottom">
-                        <div>
-                            <div class="fw-semibold text-dark">Activity 2</div>
-                            <div class="small text-muted">2 hours ago</div>
-                        </div>
-                        <span class="badge bg-success-light">Completed</span>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between mb-3 pb-3 border-bottom">
-                        <div>
-                            <div class="fw-semibold text-dark">Activity 3</div>
-                            <div class="small text-muted">2 hours ago</div>
-                        </div>
-                        <span class="badge bg-success-light">Completed</span>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between mb-3 pb-3 border-bottom">
-                        <div>
-                            <div class="fw-semibold text-dark">Activity 4</div>
-                            <div class="small text-muted">2 hours ago</div>
-                        </div>
-                        <span class="badge bg-success-light">Completed</span>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between mb-3 pb-3 border-bottom">
-                        <div>
-                            <div class="fw-semibold text-dark">Activity 5</div>
-                            <div class="small text-muted">2 hours ago</div>
-                        </div>
-                        <span class="badge bg-success-light">Completed</span>
-                    </div>
+                    <div id="traffic_report_chart" class="chart-container"></div>
                 </div>
             </div>
         </div>
-        
-        <div class="row g-4 mt-1">
-            <div class="col-12">
-                <div class="dash-card">
-                    <h5 class="fw-bold mb-4">Detailed Analytics</h5>
-                    <div id="chart2_admin_reports" class="chart-container"></div>
-                </div>
-            </div>
-        </div>
+
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var opt1 = {
-                series: [{ name: 'Data', data: [88,46,48,47,84,21,44] }],
-                chart: { type: 'area', height: 300, toolbar: { show: false }, fontFamily: 'Inter, sans-serif' },
-                colors: ['#28a745'],
+            // 1. Sales Performance (Line)
+            var optSales = {
+                series: [{ name: 'Current Period', data: [1200, 1800, 1500, 2100, 2400, 2200, 2800, 3100, 2900, 3400] },
+                         { name: 'Previous Period', data: [1000, 1500, 1300, 1800, 2000, 1900, 2500, 2400, 2700, 3000] }],
+                chart: { type: 'area', height: 350, toolbar: { show: false }, fontFamily: 'Inter, sans-serif' },
+                colors: ['#28a745', '#cbd5e1'],
                 fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.4, opacityTo: 0.05, stops: [0, 90, 100] } },
                 dataLabels: { enabled: false },
-                stroke: { curve: 'smooth', width: 3 },
-                xaxis: { categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] }
+                stroke: { curve: 'smooth', width: [3, 2], dashArray: [0, 4] },
+                xaxis: { categories: ['1st', '4th', '7th', '10th', '13th', '16th', '19th', '22nd', '25th', '28th'], axisBorder: { show: false }, axisTicks: { show: false } },
+                yaxis: { labels: { formatter: function (val) { return "$" + val; } } },
+                grid: { borderColor: '#f1f5f9', strokeDashArray: 4 },
+                legend: { position: 'top', horizontalAlign: 'right' },
+                tooltip: { y: { formatter: function (val) { return "$" + val } } }
             };
-            var chart1 = new ApexCharts(document.querySelector("#chart1_admin_reports"), opt1);
-            chart1.render();
-            
-            var opt2 = {
-                series: [{ name: 'Metric A', data: [23,23,37,6,17,9] }, { name: 'Metric B', data: [23,26,17,46,24,37] }],
-                chart: { type: 'bar', height: 300, toolbar: { show: false }, fontFamily: 'Inter, sans-serif' },
-                colors: ['#28a745', '#82c91e'],
-                plotOptions: { bar: { borderRadius: 4, columnWidth: '50%' } },
+            new ApexCharts(document.querySelector("#sales_report_chart"), optSales).render();
+
+            // 2. Category Breakdown (Donut)
+            var optCategory = {
+                series: [45, 20, 15, 10, 10],
+                labels: ['Produce', 'Meat & Seafood', 'Dairy', 'Bakery', 'Pantry'],
+                chart: { type: 'donut', height: 350, fontFamily: 'Inter, sans-serif' },
+                colors: ['#28a745', '#20c997', '#0dcaf0', '#ffc107', '#fd7e14'],
+                plotOptions: { pie: { donut: { size: '65%' } } },
                 dataLabels: { enabled: false },
-                stroke: { show: true, width: 2, colors: ['transparent'] },
-                xaxis: { categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'] },
-                fill: { opacity: 1 }
+                legend: { position: 'bottom' },
+                stroke: { width: 2, colors: ['#fff'] }
             };
-            var chart2 = new ApexCharts(document.querySelector("#chart2_admin_reports"), opt2);
-            chart2.render();
+            new ApexCharts(document.querySelector("#category_report_chart"), optCategory).render();
+
+            // 3. Orders vs Returns (Column)
+            var optOrders = {
+                series: [{ name: 'Completed', data: [320, 410, 380, 510, 490, 620] }, 
+                         { name: 'Returned/Cancelled', data: [15, 25, 18, 30, 20, 35] }],
+                chart: { type: 'bar', height: 350, stacked: true, toolbar: { show: false }, fontFamily: 'Inter, sans-serif' },
+                colors: ['#28a745', '#dc3545'],
+                plotOptions: { bar: { borderRadius: 4, columnWidth: '40%' } },
+                dataLabels: { enabled: false },
+                xaxis: { categories: ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'], axisBorder: { show: false }, axisTicks: { show: false } },
+                grid: { borderColor: '#f1f5f9', strokeDashArray: 4 },
+                legend: { position: 'top', horizontalAlign: 'right' }
+            };
+            new ApexCharts(document.querySelector("#orders_report_chart"), optOrders).render();
+
+            // 4. Traffic Sources (Horizontal Bar)
+            var optTraffic = {
+                series: [{ name: 'Visitors', data: [4500, 3200, 1800, 1200, 800] }],
+                chart: { type: 'bar', height: 350, toolbar: { show: false }, fontFamily: 'Inter, sans-serif' },
+                colors: ['#28a745'],
+                plotOptions: { bar: { borderRadius: 4, horizontal: true, barHeight: '50%' } },
+                dataLabels: { enabled: true, textAnchor: 'start', style: { colors: ['#1e293b'] }, formatter: function (val, opt) { return opt.w.globals.labels[opt.dataPointIndex] + ": " + val }, offsetX: 0 },
+                xaxis: { categories: ['Direct Search', 'Social Media', 'Email Campaigns', 'Referrals', 'Paid Ads'], labels: { show: false }, axisBorder: { show: false }, axisTicks: { show: false } },
+                yaxis: { labels: { show: false } },
+                grid: { borderColor: '#f1f5f9', strokeDashArray: 4, xaxis: { lines: { show: true } }, yaxis: { lines: { show: false } } },
+                tooltip: { theme: 'light' }
+            };
+            new ApexCharts(document.querySelector("#traffic_report_chart"), optTraffic).render();
+        });
+    </script>
+    <!-- Redirect Script for Buttons and Dummy Links -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('button').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.top.location.href = '../404.html';
+                });
+            });
+            
+            document.querySelectorAll('a[href="#"], a[href=""]').forEach(a => {
+                a.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.top.location.href = '../404.html';
+                });
+            });
         });
     </script>
 </body>

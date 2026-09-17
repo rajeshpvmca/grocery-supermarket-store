@@ -3,139 +3,228 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Delivery Profile</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <title>Driver Profile - Grocery & Supermarket</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: transparent; }
-        .dash-card { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); height: 100%; border: 1px solid #f1f5f9; }
-        .text-success { color: #28a745 !important; }
-        .bg-success-light { background: rgba(40, 167, 69, 0.1); color: #28a745; }
-        .chart-container { min-height: 300px; }
-        @media (max-width: 576px) { .dash-card { padding: 15px; } }
+        :root {
+            --theme-color: #28a745;
+            --theme-color-hover: #218838;
+            --theme-light: rgba(40, 167, 69, 0.1);
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --bg-body: #f8fafc;
+            --border-color: #e2e8f0;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-body); color: var(--text-dark); }
+        .dash-card { background: #fff; border-radius: 16px; padding: 24px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05); border: 1px solid var(--border-color); display: flex; flex-direction: column; }
+        .text-theme { color: var(--theme-color) !important; }
+        .bg-theme { background-color: var(--theme-color) !important; color: white; }
+        .bg-theme-light { background: var(--theme-light); color: var(--theme-color); }
+
+        .profile-header { background: linear-gradient(135deg, rgba(40,167,69,0.1) 0%, rgba(32,201,151,0.1) 100%); border-radius: 16px; padding: 40px 24px 24px; text-align: center; position: relative; margin-bottom: 24px; border: 1px solid var(--theme-light); }
+        
+        .profile-avatar-container { position: relative; width: 120px; height: 120px; margin: 0 auto 16px; }
+        .profile-avatar { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 4px solid #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .upload-btn { position: absolute; bottom: 0; right: 0; width: 36px; height: 36px; background: var(--theme-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 3px solid #fff; transition: all 0.2s; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
+        .upload-btn:hover { background: var(--theme-color-hover); transform: scale(1.05); }
+
+        .stat-badge { background: #fff; border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 20px; display: inline-flex; align-items: center; gap: 8px; font-weight: 600; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+
+        .form-label { font-weight: 600; color: var(--text-dark); font-size: 14px; margin-bottom: 8px; }
+        .form-control, .form-select { border: 1px solid var(--border-color); border-radius: 10px; padding: 12px 16px; font-size: 15px; color: var(--text-dark); background-color: #f8fafc; transition: all 0.2s; }
+        .form-control:focus, .form-select:focus { border-color: var(--theme-color); box-shadow: 0 0 0 4px var(--theme-light); background-color: #fff; }
+        
+        .vehicle-card { border: 1px solid var(--border-color); border-radius: 12px; padding: 16px; display: flex; gap: 16px; align-items: center; background: #f8fafc; transition: all 0.2s; cursor: pointer; }
+        .vehicle-card:hover { border-color: var(--theme-color); background: var(--theme-light); }
+        .vehicle-card.active { border-color: var(--theme-color); background: var(--theme-light); box-shadow: 0 0 0 1px var(--theme-color); }
+        .vehicle-icon { width: 48px; height: 48px; background: #fff; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; color: var(--theme-color); box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+
+        .switch-custom .form-check-input { width: 3em; height: 1.5em; cursor: pointer; }
+        .switch-custom .form-check-input:checked { background-color: var(--theme-color); border-color: var(--theme-color); }
     </style>
 </head>
 <body>
-    <div class="container-fluid py-4">
-        <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
-            <h4 class="fw-bold mb-0 text-dark">Delivery Profile</h4>
-            <button class="btn btn-success rounded-pill px-4" style="background:#28a745; border:none;">Action</button>
-        </div>
+    <div class="container-fluid py-4 px-lg-4">
         
-        <div class="row g-4 mb-4">
-            <div class="col-6 col-md-3">
-                <div class="dash-card text-center">
-                    <div class="text-muted small mb-2">Metric 1</div>
-                    <h3 class="fw-bold text-success mb-0">136</h3>
-                </div>
+        <!-- Header -->
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+            <div>
+                <h4 class="fw-bold mb-1 text-dark">Driver Profile</h4>
+                <p class="text-muted mb-0 small">Manage your personal details and vehicle info.</p>
             </div>
-            <div class="col-6 col-md-3">
-                <div class="dash-card text-center">
-                    <div class="text-muted small mb-2">Metric 2</div>
-                    <h3 class="fw-bold text-success mb-0">2509</h3>
-                </div>
-            </div>
-            <div class="col-6 col-md-3">
-                <div class="dash-card text-center">
-                    <div class="text-muted small mb-2">Metric 3</div>
-                    <h3 class="fw-bold text-success mb-0">52%</h3>
-                </div>
-            </div>
-            <div class="col-6 col-md-3">
-                <div class="dash-card text-center">
-                    <div class="text-muted small mb-2">Metric 4</div>
-                    <h3 class="fw-bold text-success mb-0">4886</h3>
-                </div>
-            </div>
+            <button class="btn btn-theme px-4 py-2 rounded-pill fw-semibold shadow-sm"><i class="bi bi-floppy me-2"></i>Save Changes</button>
         </div>
 
-        <div class="row g-4">
-            <div class="col-12 col-lg-8">
-                <div class="dash-card">
-                    <h5 class="fw-bold mb-4">Performance Overview</h5>
-                    <div id="chart1_delivery_profile" class="chart-container"></div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-4">
-                <div class="dash-card">
-                    <h5 class="fw-bold mb-4">Recent Activity</h5>
+        <div class="row g-4 align-items-stretch">
+            <!-- Left Col: Profile & Vehicle -->
+            <div class="col-12 col-xl-4 d-flex flex-column gap-4">
+                <div class="dash-card p-4">
+                    <div class="profile-header">
+                        <div class="profile-avatar-container">
+                            <img src="../assets/images/img_13.webp" alt="Profile" class="profile-avatar">
+                            <div class="upload-btn"><i class="bi bi-camera-fill"></i></div>
+                        </div>
+                        <h4 class="fw-bold text-dark mb-1">Mike Anderson</h4>
+                        <p class="text-muted mb-3 small fw-medium">Delivery Partner since Jan 2023</p>
+                        
+                        <div class="d-flex flex-wrap justify-content-center gap-2">
+                            <div class="stat-badge"><i class="bi bi-star-fill text-warning"></i> 4.9 Rating</div>
+                            <div class="stat-badge"><i class="bi bi-box-seam text-theme"></i> 1,240 Deliveries</div>
+                        </div>
+                    </div>
                     
-                    <div class="d-flex align-items-center justify-content-between mb-3 pb-3 border-bottom">
-                        <div>
-                            <div class="fw-semibold text-dark">Activity 1</div>
-                            <div class="small text-muted">2 hours ago</div>
-                        </div>
-                        <span class="badge bg-success-light">Completed</span>
+                    <div class="d-flex justify-content-between align-items-center mb-3 mt-2">
+                        <h6 class="fw-bold mb-0">Active Vehicle</h6>
+                        <a href="#" class="text-theme small fw-semibold text-decoration-none">Edit <i class="bi bi-pencil-square"></i></a>
                     </div>
-                    <div class="d-flex align-items-center justify-content-between mb-3 pb-3 border-bottom">
+                    <div class="vehicle-card active">
+                        <div class="vehicle-icon"><i class="bi bi-scooter"></i></div>
                         <div>
-                            <div class="fw-semibold text-dark">Activity 2</div>
-                            <div class="small text-muted">2 hours ago</div>
+                            <div class="fw-bold text-dark mb-1">Honda Activa 6G</div>
+                            <div class="small text-muted fw-bold font-monospace bg-white border px-2 py-1 rounded">TN-01-AB-1234</div>
                         </div>
-                        <span class="badge bg-success-light">Completed</span>
                     </div>
-                    <div class="d-flex align-items-center justify-content-between mb-3 pb-3 border-bottom">
-                        <div>
-                            <div class="fw-semibold text-dark">Activity 3</div>
-                            <div class="small text-muted">2 hours ago</div>
+                </div>
+
+                <!-- Settings -->
+                <div class="dash-card flex-grow-1">
+                    <h5 class="fw-bold mb-4 border-bottom pb-3">App Settings</h5>
+                    
+                    <div class="d-flex flex-column justify-content-center h-100 gap-4">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <div class="fw-bold text-dark mb-1">Push Notifications</div>
+                                <div class="small text-muted">Receive alerts for new orders.</div>
+                            </div>
+                            <div class="form-check form-switch switch-custom mb-0">
+                                <input class="form-check-input" type="checkbox" checked>
+                            </div>
                         </div>
-                        <span class="badge bg-success-light">Completed</span>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between mb-3 pb-3 border-bottom">
-                        <div>
-                            <div class="fw-semibold text-dark">Activity 4</div>
-                            <div class="small text-muted">2 hours ago</div>
+                        
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <div class="fw-bold text-dark mb-1">Location Tracking</div>
+                                <div class="small text-muted">Share live location with customers.</div>
+                            </div>
+                            <div class="form-check form-switch switch-custom mb-0">
+                                <input class="form-check-input" type="checkbox" checked>
+                            </div>
                         </div>
-                        <span class="badge bg-success-light">Completed</span>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between mb-3 pb-3 border-bottom">
-                        <div>
-                            <div class="fw-semibold text-dark">Activity 5</div>
-                            <div class="small text-muted">2 hours ago</div>
+                        
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <div class="fw-bold text-dark mb-1">Auto-Accept Orders</div>
+                                <div class="small text-muted">Automatically accept nearby orders.</div>
+                            </div>
+                            <div class="form-check form-switch switch-custom mb-0">
+                                <input class="form-check-input" type="checkbox">
+                            </div>
                         </div>
-                        <span class="badge bg-success-light">Completed</span>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="row g-4 mt-1">
-            <div class="col-12">
-                <div class="dash-card">
-                    <h5 class="fw-bold mb-4">Detailed Analytics</h5>
-                    <div id="chart2_delivery_profile" class="chart-container"></div>
+
+            <!-- Right Col: Form Details -->
+            <div class="col-12 col-xl-8 d-flex flex-column gap-4">
+                <div class="dash-card flex-grow-1">
+                    <h5 class="fw-bold mb-4 border-bottom pb-3">Personal Information</h5>
+                    <form class="d-flex flex-column h-100">
+                        <div class="row g-4 mb-4">
+                            <div class="col-md-6">
+                                <label class="form-label">First Name</label>
+                                <input type="text" class="form-control" value="Mike">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Last Name</label>
+                                <input type="text" class="form-control" value="Anderson">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" class="form-control" value="mike.anderson@example.com">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Phone Number</label>
+                                <input type="text" class="form-control" value="+1 (555) 123-4567">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Home Address</label>
+                                <textarea class="form-control" rows="3">123 Delivery Lane, Apt 4B, Supermarket City, SC 90210</textarea>
+                            </div>
+                        </div>
+
+                        <h5 class="fw-bold mb-4 border-bottom pb-3">Emergency Contact</h5>
+                        <div class="row g-4 mb-4">
+                            <div class="col-md-6">
+                                <label class="form-label">Contact Name</label>
+                                <input type="text" class="form-control" value="Sarah Anderson">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Relationship</label>
+                                <select class="form-select">
+                                    <option>Spouse</option>
+                                    <option selected>Sibling</option>
+                                    <option>Parent</option>
+                                    <option>Friend</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Contact Number</label>
+                                <input type="text" class="form-control" value="+1 (555) 987-6543">
+                            </div>
+                        </div>
+
+                        <div class="mt-auto">
+                            <h5 class="fw-bold mb-4 border-bottom pb-3">Documents Verification</h5>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="border rounded-3 p-3 d-flex justify-content-between align-items-center bg-light">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <i class="bi bi-person-vcard fs-2 text-secondary"></i>
+                                            <div>
+                                                <div class="fw-bold text-dark">Driver's License</div>
+                                                <div class="small text-muted">Uploaded on Jan 12, 2023</div>
+                                            </div>
+                                        </div>
+                                        <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 px-2 py-1"><i class="bi bi-check-circle-fill me-1"></i>Verified</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="border rounded-3 p-3 d-flex justify-content-between align-items-center bg-light">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <i class="bi bi-shield-check fs-2 text-secondary"></i>
+                                            <div>
+                                                <div class="fw-bold text-dark">Vehicle Insurance</div>
+                                                <div class="small text-muted">Expires on Nov 15, 2024</div>
+                                            </div>
+                                        </div>
+                                        <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 px-2 py-1"><i class="bi bi-check-circle-fill me-1"></i>Verified</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-
+    <!-- Redirect Script for Buttons and Dummy Links -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var opt1 = {
-                series: [{ name: 'Data', data: [28,66,83,31,93,9,54] }],
-                chart: { type: 'area', height: 300, toolbar: { show: false }, fontFamily: 'Inter, sans-serif' },
-                colors: ['#28a745'],
-                fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.4, opacityTo: 0.05, stops: [0, 90, 100] } },
-                dataLabels: { enabled: false },
-                stroke: { curve: 'smooth', width: 3 },
-                xaxis: { categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] }
-            };
-            var chart1 = new ApexCharts(document.querySelector("#chart1_delivery_profile"), opt1);
-            chart1.render();
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('button').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.top.location.href = '../404.html';
+                });
+            });
             
-            var opt2 = {
-                series: [{ name: 'Metric A', data: [38,24,49,16,23,2] }, { name: 'Metric B', data: [8,9,3,4,29,32] }],
-                chart: { type: 'bar', height: 300, toolbar: { show: false }, fontFamily: 'Inter, sans-serif' },
-                colors: ['#28a745', '#82c91e'],
-                plotOptions: { bar: { borderRadius: 4, columnWidth: '50%' } },
-                dataLabels: { enabled: false },
-                stroke: { show: true, width: 2, colors: ['transparent'] },
-                xaxis: { categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'] },
-                fill: { opacity: 1 }
-            };
-            var chart2 = new ApexCharts(document.querySelector("#chart2_delivery_profile"), opt2);
-            chart2.render();
+            document.querySelectorAll('a[href="#"], a[href=""]').forEach(a => {
+                a.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.top.location.href = '../404.html';
+                });
+            });
         });
     </script>
 </body>
