@@ -933,3 +933,97 @@ footer a:hover {
 
 .pagination { gap: 8px; }
 .pagination .page-link { border-radius: 8px !important; }
+
+ /* Modern Preloader */
+        #theme-preloader {
+            position: fixed;
+            inset: 0;
+            background: #ffffff;
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        #theme-preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .preloader-icon-container {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            background: #28a745;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(40, 167, 69, 0.3);
+            animation: bounceIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin-bottom: 20px;
+        }
+        .preloader-icon-container i.fa-basket-shopping {
+            font-size: 2rem;
+            color: white;
+            z-index: 2;
+        }
+        .preloader-leaf {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            color: #ffc107;
+            font-size: 1.5rem;
+            animation: leafSway 2s infinite ease-in-out;
+            z-index: 3;
+        }
+        .preloader-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #333;
+            letter-spacing: 0.5px;
+            animation: fadeIn 1.5s ease;
+        }
+        .preloader-text span {
+            color: #28a745;
+        }
+        .loader-bar {
+            width: 150px;
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            margin-top: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+        .loader-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 40%;
+            background: #28a745;
+            border-radius: 10px;
+            animation: loadProgress 1.5s infinite ease-in-out;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes leafSway {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(20deg); }
+        }
+        @keyframes loadProgress {
+            0% { left: -40%; }
+            50% { left: 30%; width: 60%; }
+            100% { left: 100%; width: 40%; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
