@@ -15,12 +15,18 @@ html, body {
     font-family: 'Poppins', sans-serif;
     color: var(--text-dark);
     background-color: var(--bg-light);
-    overflow-x: hidden;
     width: 100%;
+    overflow-x: hidden;
 }
 
 body {
-    padding-top: 0; /* Adjusted dynamically by JS for sticky header */
+    padding-top: 130px; /* Adjusted for fixed header */
+}
+
+@media (max-width: 991px) {
+    body {
+        padding-top: 85px; /* Mobile header height */
+    }
 }
 
 a {
@@ -82,16 +88,17 @@ header.fixed-top {
         left: 0;
         width: 100vw;
         height: 100vh;
-        background: rgba(255, 255, 255, 0.98);
+        background: #f9fafb;
         z-index: 1050;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         transform: translateY(-100%);
-        transition: transform 0.3s ease-in-out;
+        transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.4s ease;
         opacity: 0;
         pointer-events: none;
+        overflow-y: auto;
     }
     
     .navbar-collapse.show {
@@ -103,21 +110,47 @@ header.fixed-top {
     .navbar-nav {
         text-align: center;
         width: 100%;
+        padding: 0;
+        margin: auto;
     }
 
     .nav-item {
-        font-size: 24px;
-        margin: 15px 0;
+        margin: 10px 0;
+    }
+
+    .nav-link {
+        font-size: 22px;
+        font-weight: 600;
+        color: #2b3445 !important;
+        padding: 8px 15px !important;
+        display: inline-block;
+        position: relative;
+    }
+
+    .nav-link.active {
+        color: var(--primary-color) !important;
+    }
+
+    .nav-link.active::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        height: 2px;
+        background-color: var(--primary-color);
     }
 
     .close-menu {
         position: absolute;
-        top: 20px;
+        top: 25px;
         right: 30px;
-        font-size: 30px;
+        font-size: 32px;
         cursor: pointer;
-        color: var(--text-dark);
+        color: #2b3445;
         display: block !important;
+        z-index: 1060;
     }
 }
 .close-menu {

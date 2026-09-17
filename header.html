@@ -1,4 +1,4 @@
-<header>
+<header style="position: fixed; top: 0; left: 0; z-index: 1040; background: #fff; width: 100%; max-width: 100vw; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
     <!-- Top Bar -->
     <div class="top-bar d-none d-lg-block">
         <div class="container d-flex justify-content-between align-items-center">
@@ -18,24 +18,26 @@
     <!-- Main Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light py-3">
         <div class="container">
-           <a class="navbar-brand position-relative" style="z-index: 1060;" href="index.html">
+           <a class="navbar-brand position-relative" href="index.html">
             <div style="-webkit-mask: url('assets/images/logoStackly.webp') no-repeat center left; -webkit-mask-size: contain; mask: url('assets/images/logoStackly.webp') no-repeat center left; mask-size: contain; background: var(--primary-hover); width: 160px; height: 50px;"
                 aria-label="Stackly Logo"></div>
         </a>
             
             <div class="d-flex align-items-center order-lg-last gap-3">
-                <!-- Theme Login Button -->
-                <a href="login.html" class="btn btn-theme-primary d-none d-sm-inline-flex">
-                    <i class="fa-solid fa-right-to-bracket login-icon"></i> Login
-                </a>
+                <!-- Theme Login Button (Hidden on Mobile & Tablet) -->
+                <div class="d-none d-lg-block">
+                    <a href="login.html" class="btn btn-theme-primary px-4 rounded-pill shadow-sm">
+                        <i class="fa-solid fa-circle-user me-2"></i> Login
+                    </a>
+                </div>
                 
                 <!-- Mobile Menu Toggler -->
-                <button class="navbar-toggler border-0 ms-1 px-1" type="button" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon" style="width: 1.2em; height: 1.2em;"></span>
+                <button class="navbar-toggler ms-1 px-2 py-1" type="button" aria-label="Toggle navigation" style="box-shadow: none; outline: none; border: 2px solid #4a4a4a; border-radius: 8px;">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
             </div>
 
-            <div class="navbar-collapse">
+            <div class="navbar-collapse" id="mobileMenu">
                 <span class="close-menu"><i class="fa-solid fa-xmark"></i></span>
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                     <li class="nav-item">
@@ -56,15 +58,16 @@
                     <li class="nav-item">
                         <a class="nav-link" href="contact.html">Contact Us</a>
                     </li>
-                    <!-- Mobile Login Button -->
-                    <li class="nav-item d-sm-none mt-3 text-center">
-                        <a href="login.html" class="btn btn-theme-primary">
-                            <i class="fa-solid fa-right-to-bracket login-icon"></i> Login
+                    <!-- Mobile/Tablet Login Button (Visible inside menu) -->
+                    <li class="nav-item d-lg-none mt-4 text-center">
+                        <a href="login.html" class="btn btn-theme-primary px-5 py-2 rounded-pill shadow-sm" style="font-size: 20px;">
+                            Login <i class="fa-solid fa-circle-user ms-2"></i>
                         </a>
                     </li>
                 </ul>
             </div>
+
+            
         </div>
     </nav>
 </header>
-
