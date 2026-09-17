@@ -20,13 +20,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const role = user.role || 'User';
     if (roleBadge) roleBadge.textContent = role;
 
-    const navVehicleOwner = document.getElementById('navVehicleOwner');
-    const navAgent = document.getElementById('navAgent');
-    const navGarage = document.getElementById('navGarage');
+    const navCustomer = document.getElementById('navCustomer');
+    const navAdmin = document.getElementById('navAdmin');
+    const navDelivery = document.getElementById('navDelivery');
 
-    if (navVehicleOwner) navVehicleOwner.style.display = role === 'VehicleOwner' ? 'block' : 'none';
-    if (navAgent) navAgent.style.display = role === 'Agent' ? 'block' : 'none';
-    if (navGarage) navGarage.style.display = role === 'Garage' ? 'block' : 'none';
+    if (navCustomer) navCustomer.style.display = role === 'Customer' ? 'block' : 'none';
+    if (navAdmin) navAdmin.style.display = role === 'Admin' ? 'block' : 'none';
+    if (navDelivery) navDelivery.style.display = role === 'Delivery' ? 'block' : 'none';
 
     // Signout Logic
     const signoutBtn = document.getElementById('signoutBtn');
@@ -45,9 +45,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Define default pages for each role
     const roleDefaults = {
-        'VehicleOwner': 'vehicleowner_overview',
-        'Agent': 'agent_overview',
-        'Garage': 'garage_overview'
+        'Customer': 'customer_overview',
+        'Admin': 'admin_overview',
+        'Delivery': 'delivery_overview'
     };
 
     // Restore last page

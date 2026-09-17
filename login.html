@@ -3,22 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login | Stackly Vehicle Insurance</title>
+    <title>Login | Stackly Grocery & Supermarket</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="css/styles.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
-        :root {
-            --accent-purple: #3b82f6;
-            --accent-cyan: #38bdf8;
-        }
-
         body {
             min-height: 100vh;
             display: flex;
@@ -30,7 +25,7 @@
         }
 
         .auth-card {
-            background: rgba(9, 9, 11, 0.7);
+            background: rgba(9, 9, 11, 0.75);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.15);
@@ -61,21 +56,21 @@
         }
 
         .btn-check:checked + .unique-role-item {
-            background: rgba(56, 189, 248, 0.1);
-            border-color: var(--accent-cyan);
+            background: rgba(40, 167, 69, 0.1);
+            border-color: var(--primary-color);
             color: #ffffff;
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+            box-shadow: 0 0 20px rgba(40, 167, 69, 0.3);
             transform: translateY(-3px);
         }
 
         .btn-check:checked + .unique-role-item span.material-symbols-outlined,
         .btn-check:checked + .unique-role-item .role-text {
-            color: var(--accent-cyan);
+            color: var(--primary-color);
             font-weight: bold;
         }
 
         .unique-role-item:hover {
-            border-color: var(--accent-cyan);
+            border-color: var(--primary-color);
             transform: translateY(-2px);
             color: #ffffff;
         }
@@ -89,12 +84,12 @@
         }
         
         .input-group:focus-within .toggle-password {
-            border-color: var(--accent-cyan);
-            color: var(--accent-cyan);
+            border-color: var(--primary-color);
+            color: var(--primary-color);
         }
         
         .toggle-password:hover {
-            color: var(--accent-cyan);
+            color: var(--primary-color);
         }
         
         .form-check-input {
@@ -103,31 +98,19 @@
         }
         
         .form-check-input:checked {
-            background-color: var(--accent-cyan);
-            border-color: var(--accent-cyan);
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
         }
         
         .auth-link {
-            color: var(--accent-cyan);
+            color: var(--primary-color);
             text-decoration: none;
             font-weight: 600;
             transition: color 0.3s;
         }
         
         .auth-link:hover {
-            color: var(--accent-purple);
-        }
-
-        .btn-custom-primary {
-            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
-            color: white;
-            border: none;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .btn-custom-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(56, 189, 248, 0.4);
-            color: white;
+            color: var(--white);
         }
         
         .auth-input-custom {
@@ -136,19 +119,29 @@
             color: white !important;
         }
         .auth-input-custom:focus {
-            border-color: var(--accent-cyan) !important;
-            box-shadow: 0 0 0 0.25rem rgba(56, 189, 248, 0.25) !important;
+            border-color: var(--primary-color) !important;
+            box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25) !important;
+        }
+
+        @media (max-width: 400px) {
+            .unique-role-selector {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .auth-card {
+                padding: 1.5rem !important;
+            }
         }
     </style>
 </head>
 
 <body>
-    <!-- Premium Corporate Animated Background Image -->
+    <!-- Premium Background -->
     <div class="position-fixed top-0 start-0 w-100 h-100 pointer-none" style="background: url('assets/images/img_12.webp') no-repeat center center; background-size: cover; z-index: -3;"></div>
-    <!-- Stackly Premium Gradient Overlay -->
-    <div class="position-fixed top-0 start-0 w-100 h-100 pointer-none" style="background: linear-gradient(135deg, rgba(9, 9, 11, 0.95) 0%, rgba(59, 130, 246, 0.8) 100%); z-index: -2;"></div>
+    <!-- Stackly Green Gradient Overlay -->
+    <div class="position-fixed top-0 start-0 w-100 h-100 pointer-none" style="background: linear-gradient(135deg, rgba(9, 9, 11, 0.95) 0%, rgba(40, 167, 69, 0.7) 100%); z-index: -2;"></div>
     <!-- Floating Orbs -->
-    <div class="position-fixed top-0 end-0 translate-middle rounded-circle pointer-none" style="width: 400px; height: 400px; background: var(--accent-purple); filter: blur(120px); opacity: 0.3; z-index: -1;"></div>
+    <div class="position-fixed top-0 end-0 translate-middle rounded-circle pointer-none" style="width: 400px; height: 400px; background: var(--primary-color); filter: blur(120px); opacity: 0.3; z-index: -1;"></div>
     
     <div class="container position-relative z-1 py-3">
         <div class="row justify-content-center">
@@ -158,37 +151,37 @@
                     <div class="text-center mb-5">
                         <a href="index.html" class="small auth-link mb-3 d-inline-block"><i class="fas fa-arrow-left me-2"></i> Return to Home</a>
                         <h2 class="display-6 fw-bold mb-2 text-white">Welcome Back</h2>
-                        <p class="text-light opacity-75">Sign in to your Stackly Vehicle Insurance account.</p>
+                        <p class="text-light opacity-75">Sign in to your Grocery Store account.</p>
                     </div>
 
                     <form id="loginForm">
                         <label class="form-label text-light opacity-75 small fw-bold letter-spacing-1 text-uppercase mb-3 d-block text-center">I am a...</label>
                         <div class="unique-role-selector mb-4">
-                            <!-- Role 1: Vehicle Owner -->
-                            <input type="radio" class="btn-check" name="loginRole" id="roleVehicleOwner" value="VehicleOwner" checked autocomplete="off">
-                            <label class="unique-role-item" for="roleVehicleOwner">
-                                <span class="material-symbols-outlined fs-3 mb-1">directions_car</span>
-                                <span class="role-text small">Vehicle Owner</span>
+                            <!-- Role 1: Customer -->
+                            <input type="radio" class="btn-check" name="loginRole" id="roleCustomer" value="Customer" checked autocomplete="off">
+                            <label class="unique-role-item" for="roleCustomer">
+                                <span class="material-symbols-outlined fs-3 mb-1">shopping_cart</span>
+                                <span class="role-text small">Customer</span>
                             </label>
 
-                            <!-- Role 2: Agent -->
-                            <input type="radio" class="btn-check" name="loginRole" id="roleAgent" value="Agent" autocomplete="off">
-                            <label class="unique-role-item" for="roleAgent">
-                                <span class="material-symbols-outlined fs-3 mb-1">support_agent</span>
-                                <span class="role-text small">Agent</span>
+                            <!-- Role 2: Store Admin -->
+                            <input type="radio" class="btn-check" name="loginRole" id="roleAdmin" value="Admin" autocomplete="off">
+                            <label class="unique-role-item" for="roleAdmin">
+                                <span class="material-symbols-outlined fs-3 mb-1">store</span>
+                                <span class="role-text small">Store Admin</span>
                             </label>
 
-                            <!-- Role 3: Garage -->
-                            <input type="radio" class="btn-check" name="loginRole" id="roleGarage" value="Garage" autocomplete="off">
-                            <label class="unique-role-item" for="roleGarage">
-                                <span class="material-symbols-outlined fs-3 mb-1">build</span>
-                                <span class="role-text small">Garage</span>
+                            <!-- Role 3: Delivery Partner -->
+                            <input type="radio" class="btn-check" name="loginRole" id="roleDelivery" value="Delivery" autocomplete="off">
+                            <label class="unique-role-item" for="roleDelivery">
+                                <span class="material-symbols-outlined fs-3 mb-1">local_shipping</span>
+                                <span class="role-text small">Delivery</span>
                             </label>
                         </div>
 
                         <div class="mb-4 text-start">
                             <label class="form-label text-light opacity-75 small fw-bold letter-spacing-1 text-uppercase">Email Address</label>
-                            <input class="form-control auth-input-custom py-3 shadow-none rounded-3" type="email" id="loginEmail" placeholder="name@company.com" required>
+                            <input class="form-control auth-input-custom py-3 shadow-none rounded-3" type="email" id="loginEmail" placeholder="name@domain.com" required>
                         </div>
 
                         <div class="mb-2 text-start">
@@ -215,7 +208,7 @@
                             <a href="404.html" class="small auth-link">Forgot password?</a>
                         </div>
 
-                        <button type="submit" class="btn btn-custom-primary w-100 py-3 fw-bold mb-4 d-flex align-items-center justify-content-center gap-2">
+                        <button type="submit" class="btn btn-theme-primary w-100 py-3 fw-bold mb-4 d-flex align-items-center justify-content-center gap-2">
                             Sign In <i class="fa-solid fa-arrow-right-to-bracket ms-1"></i>
                         </button>
 
